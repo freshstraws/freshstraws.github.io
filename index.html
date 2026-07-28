@@ -1352,6 +1352,7 @@ h1, h2, h3 { text-wrap: balance; }
 .section-heading h2 { text-wrap: balance; }
 .section-heading p { max-width: 780px; text-wrap: pretty; }
 .hero-content p, .page-hero p, .intro-grid p, .split-section p, .value-grid p, p.source-note { text-wrap: pretty; }
+html[data-route="/"] .footer-cta { display: none; }
 </style>
 
     <link rel="canonical" href="https://freshstraws.github.io/">
@@ -1577,17 +1578,7 @@ h1, h2, h3 { text-wrap: balance; }
       </div>
       <img class="rounded-media" src="/images/factory-process.jpg" alt="Quy trình xử lý ống hút cỏ bàng">
     </section>
-        <section class="section">
-      <div class="section-heading">
-    <span class="eyebrow">Từ nguyên liệu đến thành phẩm</span>
-    <h2>Quy trình được trình bày rõ cho khách hàng doanh nghiệp</h2>
-    
-  </div>
-      <div class="process-grid">
-        <article><span>01</span><h3>Vùng nguyên liệu</h3><p>Lựa chọn cỏ bàng/cỏ tự nhiên phù hợp, ưu tiên nguồn nguyên liệu bản địa và quy trình thu hái có kiểm soát.</p></article><article><span>02</span><h3>Sơ chế và làm sạch</h3><p>Ống hút trải qua quy trình vệ sinh nghiêm ngặt trước khi sấy và đóng gói.</p></article><article><span>03</span><h3>Sấy, phân loại</h3><p>Phân loại theo kích thước, màu sắc và độ hoàn thiện để đáp ứng các nhu cầu đồ uống khác nhau.</p></article><article><span>04</span><h3>Đóng gói</h3><p>Đóng gói theo quy cách bán sỉ, phân phối hoặc yêu cầu nhãn riêng: 1 hộp = 100 ống; 1 thùng = 50 hộp = 5.000 ống.</p></article><article><span>05</span><h3>Kiểm soát chất lượng</h3><p>Kiểm tra ngoại quan, độ sạch, kích thước và tính phù hợp trước khi giao hàng.</p></article>
-      </div>
-    </section>
-    <section class="section contact-band">
+        <section class="section contact-band">
       <div>
         <span class="eyebrow">Quick contact</span>
         <h2>Cần mẫu, báo giá hoặc tư vấn quy cách?</h2>
@@ -2949,6 +2940,7 @@ function initSpaRouter() {
   function showPage(path) {
     const target = normalize(path);
     const match = pages.find((p) => p.dataset.path === target) ? target : "/";
+    document.documentElement.setAttribute("data-route", match);
     pages.forEach((p) => { p.hidden = p.dataset.path !== match; });
     navLinks.forEach((link) => {
       const href = link.getAttribute("href");
