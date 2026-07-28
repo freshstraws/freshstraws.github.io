@@ -1345,6 +1345,13 @@ select:focus {
 @media (prefers-reduced-motion: reduce) {
   .lang-toast { transition: none; }
 }
+
+/* --- Cân đối ngắt dòng tiêu đề & mô tả (tránh rớt chữ lẻ) --- */
+h1, h2, h3 { text-wrap: balance; }
+.section-heading { max-width: none; }
+.section-heading h2 { text-wrap: balance; }
+.section-heading p { max-width: 780px; text-wrap: pretty; }
+.hero-content p, .page-hero p, .intro-grid p, .split-section p, .value-grid p, p.source-note { text-wrap: pretty; }
 </style>
 
     <link rel="canonical" href="https://freshstraws.github.io/">
