@@ -2846,12 +2846,44 @@ function initSearch() {
   });
 }
 
+// ==== Google Sheets endpoint (Apps Script Web App URL). Dán URL vào giữa 2 dấu nháy: ====
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbyMW76bnpBb5CI4fzmzkcwQzZV9PY2n5lsJAYJSkO1vNId35wdtQeN2FuGR8RkZ12s1/exec";
+
 function initForms() {
   $$("[data-form]").forEach((form) => {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       const feedback = $("[data-form-feedback]", form);
-      if (feedback) feedback.textContent = "Cảm ơn bạn. Vui lòng gửi trực tiếp tới contact@freshstraws.com hoặc gọi 028 3750 5702 để được phản hồi nhanh nhất.";
+      const btn = form.querySelector('button[type="submit"], button:not([type])');
+      const isChat = !!form.closest("[data-chat]");
+      const payload = {
+        form: isChat ? "Chat box" : ((form.querySelector("h2") && form.querySelector("h2").textContent) || document.title || "").trim(),
+        page: location.hash.slice(1) || "/"
+      };
+      form.querySelectorAll("input, textarea, select").forEach((el) => {
+        if (el.name) payload[el.name] = el.value;
+      });
+      if (!payload.message) {
+        const anon = form.querySelector("input:not([name]), textarea:not([name])");
+        if (anon && anon.value) payload.message = anon.value;
+      }
+      // Chưa gắn URL -> giữ thông báo dự phòng, không mất lead
+      if (!SHEET_ENDPOINT || SHEET_ENDPOINT.indexOf("PASTE_") === 0) {
+        if (feedback) feedback.textContent = "Cảm ơn bạn. Vui lòng gửi trực tiếp tới contact@freshstraws.com hoặc gọi 028 3750 5702.";
+        form.reset();
+        return;
+      }
+      if (btn) btn.disabled = true;
+      if (feedback) feedback.textContent = "Đang gửi...";
+      fetch(SHEET_ENDPOINT, { method: "POST", mode: "no-cors", body: JSON.stringify(payload) })
+        .then(() => {
+          if (feedback) feedback.textContent = "Đã gửi thành công! Fresh Straws sẽ liên hệ lại với bạn sớm nhất.";
+          form.reset();
+        })
+        .catch(() => {
+          if (feedback) feedback.textContent = "Gửi chưa thành công. Vui lòng thử lại hoặc email contact@freshstraws.com.";
+        })
+        .finally(() => { if (btn) btn.disabled = false; });
     });
   });
 }
