@@ -100,7 +100,7 @@ org = {
     "alternateName": "Fresh Straws Việt Nam",
     "url": ORIGIN + "/", "logo": LOGO,
     "description": "Nhà sản xuất và xuất khẩu ống hút cỏ bàng, trái cây sấy, trái cây đóng lon, đông lạnh/IQF, nước ép, sữa chua sấy thăng hoa và purée. Nhận OEM/ODM.",
-    "address": {"@type": "PostalAddress", "streetAddress": "743 Hồng Bàng, Phường 6",
+    "address": {"@type": "PostalAddress", "streetAddress": "743 Hồng Bàng, Phường Bình Tây",
                 "addressLocality": "Hồ Chí Minh", "addressCountry": "VN"},
     "contactPoint": {"@type": "ContactPoint", "telephone": "+84-708-735-327",
                      "email": "contact@freshstraws.com", "contactType": "sales",
