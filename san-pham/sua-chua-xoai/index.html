@@ -1419,15 +1419,13 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
   text-align: justify;
 }
 
-.marquee { position: relative; overflow: hidden; width: 100%; margin-top: 20px; transform: translateZ(0); -webkit-transform: translateZ(0); }
+.marquee { position: relative; width: 100%; margin-top: 20px; }
 .marquee::before, .marquee::after { content: ""; position: absolute; top: 0; bottom: 0; width: 6%; z-index: 2; pointer-events: none; }
 .marquee::before { left: 0; background: linear-gradient(90deg, var(--cream), rgba(250,248,241,0)); }
 .marquee::after { right: 0; background: linear-gradient(270deg, var(--cream), rgba(250,248,241,0)); }
-.marquee-track { display: flex; flex-wrap: nowrap; width: max-content; animation: marquee-scroll 15s linear infinite; will-change: transform; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
-.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-track { display: flex; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.marquee-track::-webkit-scrollbar { display: none; height: 0; }
 .marquee-track img { height: 340px; width: auto; margin-right: 20px; border-radius: var(--radius); display: block; flex: 0 0 auto; box-shadow: var(--shadow); }
-@keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 @media (max-width: 640px) { .marquee-track img { height: 210px; margin-right: 14px; } }
 </style>
 
@@ -3569,6 +3567,37 @@ function initHeroSlideshow() {
   }, 5000);
 }
 initHeroSlideshow();
+
+function initMarquee() {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var tracks = document.querySelectorAll(".marquee-track");
+  for (var t = 0; t < tracks.length; t++) {
+    (function (track) {
+      if (reduce) return;
+      var pxPerSec = 150, paused = false, last = null, resume;
+      function pause() { paused = true; if (resume) clearTimeout(resume); }
+      function play() { if (resume) clearTimeout(resume); resume = setTimeout(function () { paused = false; }, 1000); }
+      track.addEventListener("mouseenter", pause);
+      track.addEventListener("mouseleave", function () { paused = false; });
+      track.addEventListener("touchstart", pause, { passive: true });
+      track.addEventListener("touchend", play, { passive: true });
+      function step(ts) {
+        if (last == null) last = ts;
+        var dt = (ts - last) / 1000; last = ts;
+        if (!paused) {
+          var half = track.scrollWidth / 2;
+          if (half > 0) {
+            track.scrollLeft += pxPerSec * dt;
+            if (track.scrollLeft >= half) track.scrollLeft -= half;
+          }
+        }
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    })(tracks[t]);
+  }
+}
+initMarquee();
 
 
 /* Ảnh tải trực tiếp từ /images/ (đã tách khỏi HTML để tăng tốc) */
