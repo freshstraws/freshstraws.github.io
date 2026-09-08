@@ -1419,11 +1419,11 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
   text-align: justify;
 }
 
-.marquee { position: relative; overflow: hidden; width: 100%; margin-top: 20px; }
+.marquee { position: relative; overflow: hidden; width: 100%; margin-top: 20px; transform: translateZ(0); -webkit-transform: translateZ(0); }
 .marquee::before, .marquee::after { content: ""; position: absolute; top: 0; bottom: 0; width: 6%; z-index: 2; pointer-events: none; }
 .marquee::before { left: 0; background: linear-gradient(90deg, var(--cream), rgba(250,248,241,0)); }
 .marquee::after { right: 0; background: linear-gradient(270deg, var(--cream), rgba(250,248,241,0)); }
-.marquee-track { display: flex; flex-wrap: nowrap; width: max-content; animation: marquee-scroll 15s linear infinite; }
+.marquee-track { display: flex; flex-wrap: nowrap; width: max-content; animation: marquee-scroll 15s linear infinite; will-change: transform; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 .marquee-track img { height: 340px; width: auto; margin-right: 20px; border-radius: var(--radius); display: block; flex: 0 0 auto; box-shadow: var(--shadow); }
 @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -2195,18 +2195,18 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
       <div class="section-heading" style="margin-top:36px"><span class="eyebrow">Thị trường</span><h2>Sản phẩm đã có mặt trong và ngoài nước</h2></div>
       <div class="marquee" aria-label="Sản phẩm Fresh Straws đã có mặt trong và ngoài nước">
         <div class="marquee-track">
-          <img src="/images/tcs-my-1.jpg" alt="Trái cây sấy Fresh Straws bày bán tại siêu thị nước ngoài" loading="lazy">
-          <img src="/images/tcs-my-2.jpg" alt="Sản phẩm Fresh Straws tại quầy hàng sân bay quốc tế" loading="lazy">
-          <img src="/images/tcs-my-3.jpg" alt="Trái cây sấy Fresh Straws trên kệ cửa hàng" loading="lazy">
-          <img src="/images/tcs-my-4.jpg" alt="Trái cây sấy Today Tây Đô bày bán tại siêu thị nước ngoài" loading="lazy">
-          <img src="/images/tcs-my-5.jpg" alt="Trái cây sấy Today Tây Đô trên quầy trưng bày tại nước ngoài" loading="lazy">
-          <img src="/images/tcs-my-6.jpg" alt="Trái cây sấy Today Tây Đô trên kệ siêu thị nước ngoài" loading="lazy">
-          <img src="/images/tcs-my-1.jpg" alt="" aria-hidden="true" loading="lazy">
-          <img src="/images/tcs-my-2.jpg" alt="" aria-hidden="true" loading="lazy">
-          <img src="/images/tcs-my-3.jpg" alt="" aria-hidden="true" loading="lazy">
-          <img src="/images/tcs-my-4.jpg" alt="" aria-hidden="true" loading="lazy">
-          <img src="/images/tcs-my-5.jpg" alt="" aria-hidden="true" loading="lazy">
-          <img src="/images/tcs-my-6.jpg" alt="" aria-hidden="true" loading="lazy">
+          <img src="/images/tcs-my-1.jpg" alt="Trái cây sấy Fresh Straws bày bán tại siêu thị nước ngoài">
+          <img src="/images/tcs-my-2.jpg" alt="Sản phẩm Fresh Straws tại quầy hàng sân bay quốc tế">
+          <img src="/images/tcs-my-3.jpg" alt="Trái cây sấy Fresh Straws trên kệ cửa hàng">
+          <img src="/images/tcs-my-4.jpg" alt="Trái cây sấy Today Tây Đô bày bán tại siêu thị nước ngoài">
+          <img src="/images/tcs-my-5.jpg" alt="Trái cây sấy Today Tây Đô trên quầy trưng bày tại nước ngoài">
+          <img src="/images/tcs-my-6.jpg" alt="Trái cây sấy Today Tây Đô trên kệ siêu thị nước ngoài">
+          <img src="/images/tcs-my-1.jpg" alt="" aria-hidden="true">
+          <img src="/images/tcs-my-2.jpg" alt="" aria-hidden="true">
+          <img src="/images/tcs-my-3.jpg" alt="" aria-hidden="true">
+          <img src="/images/tcs-my-4.jpg" alt="" aria-hidden="true">
+          <img src="/images/tcs-my-5.jpg" alt="" aria-hidden="true">
+          <img src="/images/tcs-my-6.jpg" alt="" aria-hidden="true">
         </div>
       </div>
     </section></div>
