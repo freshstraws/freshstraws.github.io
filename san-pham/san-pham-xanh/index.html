@@ -194,6 +194,15 @@ select {
   transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
+.dropdown-panel::before {
+  content: "";
+  position: absolute;
+  top: -22px;
+  left: 0;
+  right: 0;
+  height: 22px;
+}
+
 .has-dropdown:hover .dropdown-panel,
 .has-dropdown:focus-within .dropdown-panel {
   opacity: 1;
