@@ -1419,8 +1419,11 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
   text-align: justify;
 }
 
-.marquee { overflow: hidden; width: 100%; margin-top: 20px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
-.marquee-track { display: flex; width: max-content; animation: marquee-scroll 15s linear infinite; }
+.marquee { position: relative; overflow: hidden; width: 100%; margin-top: 20px; }
+.marquee::before, .marquee::after { content: ""; position: absolute; top: 0; bottom: 0; width: 6%; z-index: 2; pointer-events: none; }
+.marquee::before { left: 0; background: linear-gradient(90deg, var(--cream), rgba(250,248,241,0)); }
+.marquee::after { right: 0; background: linear-gradient(270deg, var(--cream), rgba(250,248,241,0)); }
+.marquee-track { display: flex; flex-wrap: nowrap; width: max-content; animation: marquee-scroll 15s linear infinite; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 .marquee-track img { height: 340px; width: auto; margin-right: 20px; border-radius: var(--radius); display: block; flex: 0 0 auto; box-shadow: var(--shadow); }
 @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
