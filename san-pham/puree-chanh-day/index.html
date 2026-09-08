@@ -1191,6 +1191,11 @@ select:focus {
   .mobile-nav.is-open {
     display: grid;
     gap: 10px;
+    max-height: calc(100vh - 84px);
+    max-height: calc(100dvh - 84px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   .mobile-nav-group {
