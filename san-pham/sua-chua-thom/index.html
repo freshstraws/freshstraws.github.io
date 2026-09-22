@@ -224,14 +224,20 @@ select {
 }
 
 .dropdown-panel--3col {
-  left: auto;
-  right: 0;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%) translateY(8px);
   display: grid;
   grid-template-columns: repeat(3, auto);
   gap: 2px 6px;
   min-width: 0;
   width: max-content;
   max-width: calc(100vw - 24px);
+}
+
+.has-dropdown:hover .dropdown-panel--3col,
+.has-dropdown:focus-within .dropdown-panel--3col {
+  transform: translateX(-50%) translateY(0);
 }
 
 .dropdown-panel--3col .dropdown-link {
