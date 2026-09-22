@@ -223,6 +223,21 @@ select {
   color: var(--green-800);
 }
 
+.dropdown-panel--3col {
+  left: auto;
+  right: 0;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 2px 6px;
+  min-width: 0;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+}
+
+.dropdown-panel--3col .dropdown-link {
+  white-space: nowrap;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -1480,7 +1495,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         </div>
       </li><li class="nav-item has-dropdown">
         <a href="/san-pham/" class="nav-link ">Sản phẩm</a>
-        <div class="dropdown-panel">
+        <div class="dropdown-panel dropdown-panel--3col">
           <a href="/san-pham/ong-hut-co-bang/" class="dropdown-link">Ống hút cỏ bàng</a><a href="/san-pham/trai-cay-say/" class="dropdown-link">Trái cây sấy</a><a href="/san-pham/dong-lon/" class="dropdown-link">Trái cây đóng lon</a><a href="/san-pham/dong-lanh-iqf/" class="dropdown-link">Trái cây đông lạnh/IQF</a><a href="/san-pham/nuoc-ep/" class="dropdown-link">Nước ép dinh dưỡng</a><a href="/san-pham/sua-chua-say/" class="dropdown-link">Sữa chua sấy thăng hoa</a><a href="/san-pham/puree/" class="dropdown-link">Trái cây nghiền nhuyễn (Puree)</a><a href="/san-pham/san-pham-xanh/" class="dropdown-link">Sản phẩm xanh</a>
         </div>
       </li><li class="nav-item has-dropdown">
