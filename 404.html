@@ -1144,9 +1144,17 @@ select:focus {
 }
 
 .site-footer {
-  width: var(--container);
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   padding: 70px 0 28px;
+  background: var(--green-950);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.site-footer > * {
+  width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .footer-cta {
@@ -1156,7 +1164,7 @@ select:focus {
   align-items: center;
   padding: 30px;
   border-radius: var(--radius);
-  background: linear-gradient(135deg, var(--green-950), var(--teal-900));
+  background: linear-gradient(135deg, var(--green-800), var(--teal-700));
   color: var(--white);
 }
 
@@ -1167,20 +1175,40 @@ select:focus {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr 0.8fr 0.8fr 1.1fr;
+  grid-template-columns: 1.4fr 1.9fr 1fr;
   gap: 32px;
   padding: 42px 0;
 }
 
 .footer-grid h3 {
-  color: var(--green-950);
+  color: var(--white);
+}
+
+.footer-grid p {
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .footer-grid a {
   display: block;
   margin: 9px 0;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.86);
   font-weight: 700;
+}
+
+.footer-grid a:hover {
+  color: var(--white);
+}
+
+.footer-logo {
+  background: var(--white);
+  padding: 10px 14px;
+  border-radius: 12px;
+}
+
+.footer-links-2col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 24px;
 }
 
 .footer-bottom {
@@ -1188,8 +1216,8 @@ select:focus {
   justify-content: space-between;
   gap: 16px;
   padding-top: 20px;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 13px;
 }
 
@@ -1252,6 +1280,10 @@ select:focus {
   .benefit-grid,
   .process-grid,
   .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-links-2col {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1321,7 +1353,8 @@ select:focus {
   .process-grid,
   .gallery-grid,
   .form-grid,
-  .footer-grid {
+  .footer-grid,
+  .footer-links-2col {
     grid-template-columns: 1fr;
   }
 
@@ -3309,6 +3342,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
       </div>
       <div>
         <h3>Sản phẩm</h3>
+        <div class="footer-links-2col">
         <a href="/san-pham/ong-hut-co-bang/">Ống hút cỏ bàng</a>
         <a href="/san-pham/trai-cay-say/">Trái cây sấy</a>
         <a href="/san-pham/dong-lon/">Trái cây đóng lon</a>
@@ -3317,16 +3351,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/san-pham/sua-chua-say/">Sữa chua sấy thăng hoa</a>
         <a href="/san-pham/puree/">Trái cây nghiền nhuyễn (Puree)</a>
         <a href="/san-pham/san-pham-xanh/">Sản phẩm xanh</a>
-      </div>
-      <div>
-        <h3>Công ty</h3>
-        <a href="/ve-chung-toi/">Về chúng tôi</a>
-        <a href="/ve-chung-toi/nang-luc-san-xuat/">Năng lực sản xuất</a>
-        <a href="/ve-chung-toi/chung-nhan/">Chứng nhận</a>
-        <a href="/tin-tuc/">Tin tức</a>
-        <a href="/tin-tuc/phan-biet-trai-cay-say-deo-gion-thang-hoa/">Phân biệt trái cây sấy dẻo/giòn/thăng hoa</a>
-        <a href="/tin-tuc/huong-dan-dat-hang-oem-odm-san-pham-xanh/">Hướng dẫn đặt hàng OEM/ODM</a>
-        <a href="/tin-tuc/xu-huong-tieu-dung-xanh-va-co-hoi-xuat-khau-2026/">Xu hướng tiêu dùng xanh &amp; xuất khẩu 2026</a>
+        </div>
       </div>
       <div>
         <h3>Liên hệ</h3>
@@ -3338,7 +3363,6 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
     <div class="footer-bottom">
       <span>© 2026 Công ty Cổ phần Fresh Straws Việt Nam.</span>
-      <span>Ống hút cỏ bàng · Trái cây sấy · Đông lạnh/IQF · Nước ép — sản xuất tại Việt Nam.</span>
     </div>
   </footer>
     <div class="search-overlay" data-search-overlay aria-hidden="true">
