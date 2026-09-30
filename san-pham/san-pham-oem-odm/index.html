@@ -1,6 +1,44 @@
 <!doctype html>
 <html lang="vi">
   <head>
+    <!-- Traffic source -> dataLayer (chạy trước GTM để thẻ đọc được ngay) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      (function () {
+        var q = new URLSearchParams(location.search);
+        var ref = document.referrer || "";
+        var host = "";
+        try { host = ref ? new URL(ref).hostname.replace(/^www\./, "") : ""; } catch (e) {}
+        var fbclid = q.get("fbclid") || "";
+        var isMeta = /(^|\.)(facebook|fb|instagram|messenger)\.com$/.test(host) || /^(l|lm|m|web)\.facebook\.com$/.test(host);
+        var src = q.get("utm_source") || (fbclid || isMeta ? "facebook" : "") || host || "(direct)";
+        var med = q.get("utm_medium") || (fbclid || isMeta ? "social" : "") || (host ? "referral" : "(none)");
+        var data = {
+          traffic_source: src,
+          traffic_medium: med,
+          traffic_campaign: q.get("utm_campaign") || "(not set)",
+          traffic_content: q.get("utm_content") || "(not set)",
+          traffic_term: q.get("utm_term") || "(not set)",
+          fbclid: fbclid,
+          page_referrer: ref,
+          landing_page: location.pathname
+        };
+        try {
+          var saved = sessionStorage.getItem("fs_first_touch");
+          if (saved) { data.first_touch = JSON.parse(saved); }
+          else { sessionStorage.setItem("fs_first_touch", JSON.stringify(data)); data.first_touch = data; }
+        } catch (e) {}
+        window.fsTrafficSource = data;
+        window.dataLayer.push(Object.assign({ event: "traffic_source" }, data));
+      })();
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T443KDBH');</script>
+    <!-- End Google Tag Manager -->
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRLXEKSMZ1"></script>
     <script>
@@ -1517,6 +1555,10 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     <!--/SEO-JSONLD-->
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T443KDBH"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <header class="site-header">
     <div class="header-inner">
@@ -3727,6 +3769,23 @@ function initSpaRouter() {
     document.querySelectorAll("[data-search-overlay]").forEach((o) => { o.classList.remove("is-open"); o.setAttribute("aria-hidden", "true"); });
     document.querySelectorAll("[data-mobile-menu]").forEach((m) => m.classList.remove("is-open"));
     window.scrollTo(0, 0);
+    trackSpaView(match);
+  }
+
+  let spaFirstView = true;
+  function trackSpaView(path) {
+    if (spaFirstView) { spaFirstView = false; return; }
+    const src = window.fsTrafficSource || {};
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "spa_page_view",
+      page_path: path,
+      page_title: document.title,
+      page_location: location.origin + path,
+      traffic_source: src.traffic_source,
+      traffic_medium: src.traffic_medium,
+      traffic_campaign: src.traffic_campaign
+    });
   }
 
   function navigateTo(path) {
