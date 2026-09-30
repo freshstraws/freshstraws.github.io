@@ -25,8 +25,8 @@
         };
         try {
           var saved = sessionStorage.getItem("fs_first_touch");
-          if (saved) { data.first_touch = JSON.parse(saved); }
-          else { sessionStorage.setItem("fs_first_touch", JSON.stringify(data)); data.first_touch = data; }
+          if (!saved) { saved = JSON.stringify(data); sessionStorage.setItem("fs_first_touch", saved); }
+          data.first_touch = JSON.parse(saved);
         } catch (e) {}
         window.fsTrafficSource = data;
         window.dataLayer.push(Object.assign({ event: "traffic_source" }, data));
