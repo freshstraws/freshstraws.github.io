@@ -748,6 +748,115 @@ p {
   margin-top: 46px;
 }
 
+.mq-sec {
+  overflow: hidden;
+}
+
+.mq-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.mq-track {
+  display: flex;
+  width: max-content;
+  animation: mqScroll 46s linear infinite;
+  will-change: transform;
+}
+
+.mq-viewport:hover .mq-track,
+.mq-viewport:focus-within .mq-track {
+  animation-play-state: paused;
+}
+
+@keyframes mqScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.mq-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: 268px;
+  margin-right: 20px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--green-100);
+  box-shadow: var(--shadow);
+  transition: transform .25s ease-out;
+}
+
+.mq-card:hover {
+  transform: translateY(-5px);
+}
+
+.mq-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mq-cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px 18px;
+  background: linear-gradient(transparent, rgba(18, 58, 44, .18) 25%, rgba(18, 58, 44, .86));
+  color: var(--white);
+}
+
+.mq-cap em {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .78);
+}
+
+.mq-cap b {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.22;
+}
+
+.mq-cta {
+  margin-top: 26px;
+}
+
+@media (max-width: 760px) {
+  .mq-card {
+    width: 200px;
+    margin-right: 14px;
+  }
+
+  .mq-cap b {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mq-track {
+    animation: none;
+  }
+
+  .mq-viewport {
+    overflow-x: auto;
+  }
+
+  .mq-card:hover {
+    transform: none;
+  }
+}
+
 .product-group-head {
   display: flex;
   align-items: baseline;
@@ -2038,6 +2147,116 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <div><strong>&gt;10.000 tấn</strong><span>Trái cây IQF / năm</span></div>
         <div><strong>&gt;1.500 tấn</strong><span>Trái cây sấy / năm</span></div>
         <div><strong>OEM/ODM</strong><span>Xuất khẩu quốc tế</span></div>
+      </div>
+    </section>
+    <section class="section mq-sec">
+      <div class="section-heading">
+        <span class="eyebrow">Featured</span>
+        <h2>Các sản phẩm nổi bật</h2>
+        <p>Một lát cắt qua các nhóm ngành hàng của Fresh Straws — từ ống hút cỏ bàng đến trái cây sấy, đông lạnh, nước ép và purée.</p>
+      </div>
+      <div class="mq-viewport">
+        <div class="mq-track">
+          <a class="mq-card" href="/san-pham/ong-hut-co-bang/">
+            <img class="mq-img" src="/images/ong-hut-co-bang.jpg" alt="Ống hút cỏ bàng khô" loading="lazy">
+            <span class="mq-cap"><em>Ống hút cỏ bàng</em><b>Ống hút cỏ bàng khô</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/trai-cay-say/">
+            <img class="mq-img" src="/images/say-xoai.jpg" alt="Xoài sấy dẻo" loading="lazy">
+            <span class="mq-cap"><em>Trái cây sấy</em><b>Xoài sấy dẻo</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/sua-chua-xoai/">
+            <img class="mq-img" src="/images/sua-chua-xoai.jpg" alt="Sữa chua sấy thăng hoa vị Xoài" loading="lazy">
+            <span class="mq-cap"><em>Sữa chua sấy thăng hoa</em><b>Sữa chua sấy thăng hoa vị Xoài</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/tropical-delight/">
+            <img class="mq-img" src="/images/tropical-delight.jpg" alt="Tropical Delight" loading="lazy">
+            <span class="mq-cap"><em>Nước ép dinh dưỡng</em><b>Tropical Delight</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/dong-lanh-iqf/">
+            <img class="mq-img" src="/images/iqf-thanh-long.jpg" alt="Thanh long đông lạnh" loading="lazy">
+            <span class="mq-cap"><em>Đông lạnh IQF</em><b>Thanh long đông lạnh</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/puree-chanh-day/">
+            <img class="mq-img" src="/images/puree-chanh-day.jpg" alt="Purée Chanh dây" loading="lazy">
+            <span class="mq-cap"><em>Trái cây nghiền nhuyễn</em><b>Purée Chanh dây</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/trai-cay-say/">
+            <img class="mq-img" src="/images/say-mit.jpg" alt="Mít sấy giòn" loading="lazy">
+            <span class="mq-cap"><em>Trái cây sấy</em><b>Mít sấy giòn</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/dong-lon/">
+            <img class="mq-img" src="/images/mang-cau-dong-lon.jpg" alt="Mãng cầu xiêm cô đặc" loading="lazy">
+            <span class="mq-cap"><em>Trái cây đóng lon</em><b>Mãng cầu xiêm cô đặc</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/greenology/">
+            <img class="mq-img" src="/images/greenology.jpg" alt="Greenology" loading="lazy">
+            <span class="mq-cap"><em>Nước ép dinh dưỡng</em><b>Greenology</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/trai-cay-say/">
+            <img class="mq-img" src="/images/say-thom-muoi-ot.jpg" alt="Thơm sấy dẻo muối ớt" loading="lazy">
+            <span class="mq-cap"><em>Trái cây sấy</em><b>Thơm sấy dẻo muối ớt</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/ong-hut-giay-12mm/">
+            <img class="mq-img" src="/images/paper-straws-12mm.jpg" alt="Ống hút giấy 12mm" loading="lazy">
+            <span class="mq-cap"><em>Sản phẩm xanh</em><b>Ống hút giấy 12mm</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/red-volcano/">
+            <img class="mq-img" src="/images/red-volcano.jpg" alt="Red Volcano" loading="lazy">
+            <span class="mq-cap"><em>Nước ép dinh dưỡng</em><b>Red Volcano</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/ong-hut-co-bang/" aria-hidden="true" tabindex="-1">
+            <img class="mq-img" src="/images/ong-hut-co-bang.jpg" alt="" loading="lazy">
+            <span class="mq-cap"><em>Ống hút cỏ bàng</em><b>Ống hút cỏ bàng khô</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/trai-cay-say/" aria-hidden="true" tabindex="-1">
+            <img class="mq-img" src="/images/say-xoai.jpg" alt="" loading="lazy">
+            <span class="mq-cap"><em>Trái cây sấy</em><b>Xoài sấy dẻo</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/sua-chua-xoai/" aria-hidden="true" tabindex="-1">
+            <img class="mq-img" src="/images/sua-chua-xoai.jpg" alt="" loading="lazy">
+            <span class="mq-cap"><em>Sữa chua sấy thăng hoa</em><b>Sữa chua sấy thăng hoa vị Xoài</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/tropical-delight/" aria-hidden="true" tabindex="-1">
+            <img class="mq-img" src="/images/tropical-delight.jpg" alt="" loading="lazy">
+            <span class="mq-cap"><em>Nước ép dinh dưỡng</em><b>Tropical Delight</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/dong-lanh-iqf/" aria-hidden="true" tabindex="-1">
+            <img class="mq-img" src="/images/iqf-thanh-long.jpg" alt="" loading="lazy">
+            <span class="mq-cap"><em>Đông lạnh IQF</em><b>Thanh long đông lạnh</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/puree-chanh-day/" aria-hidden="true" tabindex="-1">
+            <img class="mq-img" src="/images/puree-chanh-day.jpg" alt="" loading="lazy">
+            <span class="mq-cap"><em>Trái cây nghiền nhuyễn</em><b>Purée Chanh dây</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/trai-cay-say/" aria-hidden="true" tabindex="-1">
+            <img class="mq-img" src="/images/say-mit.jpg" alt="" loading="lazy">
+            <span class="mq-cap"><em>Trái cây sấy</em><b>Mít sấy giòn</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/dong-lon/" aria-hidden="true" tabindex="-1">
+            <img class="mq-img" src="/images/mang-cau-dong-lon.jpg" alt="" loading="lazy">
+            <span class="mq-cap"><em>Trái cây đóng lon</em><b>Mãng cầu xiêm cô đặc</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/greenology/" aria-hidden="true" tabindex="-1">
+            <img class="mq-img" src="/images/greenology.jpg" alt="" loading="lazy">
+            <span class="mq-cap"><em>Nước ép dinh dưỡng</em><b>Greenology</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/trai-cay-say/" aria-hidden="true" tabindex="-1">
+            <img class="mq-img" src="/images/say-thom-muoi-ot.jpg" alt="" loading="lazy">
+            <span class="mq-cap"><em>Trái cây sấy</em><b>Thơm sấy dẻo muối ớt</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/ong-hut-giay-12mm/" aria-hidden="true" tabindex="-1">
+            <img class="mq-img" src="/images/paper-straws-12mm.jpg" alt="" loading="lazy">
+            <span class="mq-cap"><em>Sản phẩm xanh</em><b>Ống hút giấy 12mm</b></span>
+          </a>
+          <a class="mq-card" href="/san-pham/red-volcano/" aria-hidden="true" tabindex="-1">
+            <img class="mq-img" src="/images/red-volcano.jpg" alt="" loading="lazy">
+            <span class="mq-cap"><em>Nước ép dinh dưỡng</em><b>Red Volcano</b></span>
+          </a>
+        </div>
+      </div>
+      <div class="button-row mq-cta">
+        <a class="btn btn-secondary" href="/san-pham/">Xem tất cả sản phẩm <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
       </div>
     </section>
     <section class="section soft-band">
