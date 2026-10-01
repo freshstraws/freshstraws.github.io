@@ -635,7 +635,7 @@ p {
   min-height: 42px;
   padding: 0 14px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 8px;
   background: var(--white);
   font: inherit;
   font-size: 15px;
@@ -653,25 +653,29 @@ p {
 }
 
 .filter-chip {
-  padding: 6px 12px;
+  padding: 6px 11px;
   border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--white);
-  color: var(--green-950);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
   font: inherit;
-  font-size: 13.5px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
   cursor: pointer;
+  transition: border-color .16s ease, background .16s ease, color .16s ease;
 }
 
 .filter-chip:hover {
   border-color: var(--green-800);
+  color: var(--green-800);
 }
 
 .filter-chip.is-on {
-  background: var(--green-800);
+  background: var(--green-100);
   border-color: var(--green-800);
-  color: var(--white);
+  color: var(--green-800);
 }
 
 .filter-chip[hidden] {
@@ -682,7 +686,7 @@ p {
   justify-self: start;
   padding: 8px 14px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 8px;
   background: var(--white);
   color: var(--muted);
   font: inherit;
@@ -713,7 +717,7 @@ p {
   display: none;
   padding: 9px 16px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 8px;
   background: var(--white);
   color: var(--green-950);
   font: inherit;
