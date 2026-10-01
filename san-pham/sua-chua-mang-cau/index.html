@@ -543,6 +543,51 @@ p {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.product-toc {
+  position: sticky;
+  top: 76px;
+  z-index: 40;
+  display: flex;
+  gap: 8px;
+  margin: 0 0 26px;
+  padding: 10px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: rgba(250, 248, 241, 0.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(31, 107, 79, 0.14);
+}
+
+.product-toc::-webkit-scrollbar {
+  display: none;
+}
+
+.product-toc a {
+  flex: none;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--green-950);
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.product-toc a:hover {
+  border-color: var(--green-800);
+}
+
+.product-toc a.is-current {
+  background: var(--green-800);
+  border-color: var(--green-800);
+  color: var(--white);
+}
+
+.product-group {
+  scroll-margin-top: 150px;
+}
+
 .product-group + .product-group {
   margin-top: 46px;
 }
@@ -1547,6 +1592,14 @@ select:focus {
     right: 16px;
     bottom: 16px;
   }
+
+  .product-toc {
+    top: 68px;
+  }
+
+  .product-group {
+    scroll-margin-top: 136px;
+  }
 }
 
     .spa-page[hidden] { display: none !important; }
@@ -2108,7 +2161,18 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
               <a class="" href="/san-pham/puree/">Trái cây nghiền nhuyễn (Puree)</a>
         <a class="" href="/san-pham/san-pham-xanh/">Sản phẩm xanh</a>
       </div>
-      <div class="product-group">
+      <nav class="product-toc" aria-label="Mục lục nhóm sản phẩm" data-product-toc>
+        <a href="#nhom-ong-hut-co-bang">Ống hút cỏ bàng</a>
+        <a href="#nhom-trai-cay-say">Trái cây sấy</a>
+        <a href="#nhom-trai-cay-dong-lon">Trái cây đóng lon</a>
+        <a href="#nhom-trai-cay-dong-lanh-iqf">Trái cây đông lạnh / IQF</a>
+        <a href="#nhom-nuoc-ep-dinh-duong">Nước ép dinh dưỡng</a>
+        <a href="#nhom-sua-chua-say-thang-hoa">Sữa chua sấy thăng hoa</a>
+        <a href="#nhom-trai-cay-nghien-nhuyen-puree">Trái cây nghiền nhuyễn (Purée)</a>
+        <a href="#nhom-san-pham-xanh">Sản phẩm xanh</a>
+        <a href="#nhom-oem-odm-theo-yeu-cau">OEM / ODM theo yêu cầu</a>
+      </nav>
+      <div class="product-group" id="nhom-ong-hut-co-bang">
         <div class="product-group-head">
           <h2>Ống hút cỏ bàng</h2>
           <a class="product-group-link" href="/san-pham/ong-hut-co-bang/">Xem nhóm ống hút cỏ bàng<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
@@ -2157,7 +2221,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" id="nhom-trai-cay-say">
         <div class="product-group-head">
           <h2>Trái cây sấy</h2>
           <a class="product-group-link" href="/san-pham/trai-cay-say/">Xem nhóm trái cây sấy<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
@@ -2242,7 +2306,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" id="nhom-trai-cay-dong-lon">
         <div class="product-group-head">
           <h2>Trái cây đóng lon</h2>
           <a class="product-group-link" href="/san-pham/dong-lon/">Xem nhóm trái cây đóng lon<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
@@ -2275,7 +2339,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" id="nhom-trai-cay-dong-lanh-iqf">
         <div class="product-group-head">
           <h2>Trái cây đông lạnh / IQF</h2>
           <a class="product-group-link" href="/san-pham/dong-lanh-iqf/">Xem nhóm trái cây đông lạnh / iqf<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
@@ -2321,7 +2385,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" id="nhom-nuoc-ep-dinh-duong">
         <div class="product-group-head">
           <h2>Nước ép dinh dưỡng</h2>
           <a class="product-group-link" href="/san-pham/nuoc-ep/">Xem nhóm nước ép dinh dưỡng<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
@@ -2370,7 +2434,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" id="nhom-sua-chua-say-thang-hoa">
         <div class="product-group-head">
           <h2>Sữa chua sấy thăng hoa</h2>
           <a class="product-group-link" href="/san-pham/sua-chua-say/">Xem nhóm sữa chua sấy thăng hoa<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
@@ -2447,7 +2511,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" id="nhom-trai-cay-nghien-nhuyen-puree">
         <div class="product-group-head">
           <h2>Trái cây nghiền nhuyễn (Purée)</h2>
           <a class="product-group-link" href="/san-pham/puree/">Xem nhóm trái cây nghiền nhuyễn (purée)<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
@@ -2510,7 +2574,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" id="nhom-san-pham-xanh">
         <div class="product-group-head">
           <h2>Sản phẩm xanh</h2>
           <a class="product-group-link" href="/san-pham/san-pham-xanh/">Xem nhóm sản phẩm xanh<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
@@ -2545,7 +2609,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" id="nhom-oem-odm-theo-yeu-cau">
         <div class="product-group-head">
           <h2>OEM / ODM theo yêu cầu</h2>
           <a class="product-group-link" href="/san-pham/oem-odm/">Xem nhóm oem / odm theo yêu cầu<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
@@ -4305,6 +4369,42 @@ function initSpaRouter() {
   showPage(location.pathname);
 }
 initSpaRouter();
+
+function initProductToc() {
+  const toc = document.querySelector("[data-product-toc]");
+  if (!toc) return;
+  const links = Array.from(toc.querySelectorAll("a"));
+  const groups = links
+    .map((a) => document.getElementById(a.getAttribute("href").slice(1)))
+    .filter(Boolean);
+  if (!groups.length) return;
+
+  let ticking = false;
+  function sync() {
+    ticking = false;
+    if (!toc.offsetParent) return;
+    const line = toc.getBoundingClientRect().bottom + 16;
+    let index = 0;
+    groups.forEach((group, i) => {
+      if (group.getBoundingClientRect().top <= line) index = i;
+    });
+    links.forEach((a, i) => a.classList.toggle("is-current", i === index));
+    const active = links[index];
+    if (active) {
+      const left = active.offsetLeft - toc.clientWidth / 2 + active.offsetWidth / 2;
+      toc.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
+    }
+  }
+
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(sync);
+  }, { passive: true });
+  window.addEventListener("resize", sync);
+  sync();
+}
+initProductToc();
 </script>
   </body>
 </html>
