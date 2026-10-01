@@ -303,6 +303,7 @@ select {
   }
 }
 
+.dropdown-panel--2col,
 .dropdown-panel--3col {
   left: 50%;
   right: auto;
@@ -315,19 +316,29 @@ select {
   max-width: calc(100vw - 24px);
 }
 
+.has-dropdown:hover .dropdown-panel--2col,
+.has-dropdown:focus-within .dropdown-panel--2col,
 .has-dropdown:hover .dropdown-panel--3col,
 .has-dropdown:focus-within .dropdown-panel--3col {
   transform: translateX(-50%) translateY(0);
 }
 
+.dropdown-panel--2col {
+  grid-template-columns: repeat(2, auto);
+}
+
+.dropdown-panel--2col .dropdown-link,
 .dropdown-panel--3col .dropdown-link {
   white-space: nowrap;
 }
 
+.dropdown-panel--2col .dropdown-link + .dropdown-link,
 .dropdown-panel--3col .dropdown-link + .dropdown-link {
   margin-top: 0;
 }
 
+.dropdown-panel--2col .dropdown-link:hover,
+.dropdown-panel--2col .dropdown-link:focus-visible,
 .dropdown-panel--3col .dropdown-link:hover,
 .dropdown-panel--3col .dropdown-link:focus-visible {
   transform: scale(1.05);
@@ -1954,7 +1965,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         
       </li><li class="nav-item has-dropdown">
         <a href="/ve-chung-toi/" class="nav-link ">Về chúng tôi</a>
-        <div class="dropdown-panel">
+        <div class="dropdown-panel dropdown-panel--2col">
           <a href="/ve-chung-toi/cau-chuyen/" class="dropdown-link">Câu chuyện</a><a href="/ve-chung-toi/doi-tac/" class="dropdown-link">Đối tác</a><a href="/ve-chung-toi/nang-luc-san-xuat/" class="dropdown-link">Năng lực sản xuất</a><a href="/ve-chung-toi/chung-nhan/" class="dropdown-link">Chứng nhận</a><a href="/ve-chung-toi/catalogue/" class="dropdown-link">Catalogue</a>
         </div>
       </li><li class="nav-item has-dropdown">
