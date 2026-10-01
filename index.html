@@ -543,6 +543,51 @@ p {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.product-group + .product-group {
+  margin-top: 46px;
+}
+
+.product-group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.product-group-head h2 {
+  margin: 0;
+  font-size: clamp(22px, 2.4vw, 30px);
+}
+
+.product-group-link {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green-800);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.product-group-link svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 560px) {
+  .product-group-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+
 .product-card {
   overflow: hidden;
   border: 1px solid var(--line);
@@ -2059,7 +2104,12 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
               <a class="" href="/san-pham/puree/">Trái cây nghiền nhuyễn (Puree)</a>
         <a class="" href="/san-pham/san-pham-xanh/">Sản phẩm xanh</a>
       </div>
-      <div class="product-grid"><article class="product-card">
+      <div class="product-group">
+        <div class="product-group-head">
+          <h2>Ống hút cỏ bàng</h2>
+          <a class="product-group-link" href="/san-pham/ong-hut-co-bang/">Xem nhóm ống hút cỏ bàng<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        </div>
+        <div class="product-grid"><article class="product-card">
     <a class="product-image" href="/san-pham/ong-hut-co-bang-kho-m/">
       <img src="/images/ong-hut-co-bang.jpg" alt="Ống hút cỏ bàng khô size M" loading="lazy">
       <span>Size M</span>
@@ -2074,6 +2124,41 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
       </div>
     </div>
   </article><article class="product-card">
+    <a class="product-image" href="/san-pham/ong-hut-co-bang-kho-l/">
+      <img src="/images/ong-hut-co-bang.jpg" alt="Ống hút cỏ bàng khô size L" loading="lazy">
+      <span>Size L</span>
+    </a>
+    <div class="product-body">
+      <p>Ống hút cỏ bàng</p>
+      <h3><a href="/san-pham/ong-hut-co-bang-kho-l/">Ống hút cỏ bàng khô size L</a></h3>
+      <p>Đường kính 5 - 6 mm (size L), làm từ cỏ bàng tự nhiên — phù hợp trà trái cây, soda và đồ uống phổ biến.</p>
+      <div class="card-actions">
+        <a href="/san-pham/ong-hut-co-bang-kho-l/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/san-pham/ong-hut-co-bang-kho-xl/">
+      <img src="/images/ong-hut-co-bang.jpg" alt="Ống hút cỏ bàng khô size XL" loading="lazy">
+      <span>Size XL</span>
+    </a>
+    <div class="product-body">
+      <p>Ống hút cỏ bàng</p>
+      <h3><a href="/san-pham/ong-hut-co-bang-kho-xl/">Ống hút cỏ bàng khô size XL</a></h3>
+      <p>Đường kính > 6 mm (size XL), làm từ cỏ bàng tự nhiên — phù hợp sinh tố, trà sữa và đồ uống có topping.</p>
+      <div class="card-actions">
+        <a href="/san-pham/ong-hut-co-bang-kho-xl/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article></div>
+      </div>
+      <div class="product-group">
+        <div class="product-group-head">
+          <h2>Trái cây sấy</h2>
+          <a class="product-group-link" href="/san-pham/trai-cay-say/">Xem nhóm trái cây sấy<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        </div>
+        <div class="product-grid"><article class="product-card">
     <a class="product-image" href="/lien-he/">
       <img src="/images/cat-trai-cay-say.jpg" alt="Mãng cầu sấy dẻo" loading="lazy">
       <span>Sấy dẻo</span>
@@ -2088,6 +2173,78 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article><article class="product-card">
     <a class="product-image" href="/lien-he/">
+      <img src="/images/say-xoai.jpg" alt="Xoài sấy dẻo" loading="lazy">
+      <span>Sấy dẻo</span>
+    </a>
+    <div class="product-body">
+      <p>Trái cây sấy dẻo</p>
+      <h3><a href="/lien-he/">Xoài sấy dẻo</a></h3>
+      <p>Xoài sấy dẻo giữ vị ngọt tự nhiên, phù hợp ăn vặt và quà tặng.</p>
+      <div class="card-actions">
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/lien-he/">
+      <img src="/images/say-thom-muoi-ot.jpg" alt="Thơm sấy dẻo muối ớt" loading="lazy">
+      <span>Vị muối ớt</span>
+    </a>
+    <div class="product-body">
+      <p>Trái cây sấy dẻo</p>
+      <h3><a href="/lien-he/">Thơm sấy dẻo muối ớt</a></h3>
+      <p>Thơm (dứa) sấy dẻo vị muối ớt, chua cay đậm đà, ăn vặt hấp dẫn.</p>
+      <div class="card-actions">
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/lien-he/">
+      <img src="/images/say-chuoi.jpg" alt="Chuối sấy dẻo" loading="lazy">
+      <span>Sấy dẻo</span>
+    </a>
+    <div class="product-body">
+      <p>Trái cây sấy dẻo</p>
+      <h3><a href="/lien-he/">Chuối sấy dẻo</a></h3>
+      <p>Chuối sấy dẻo mềm, vị ngọt tự nhiên, giàu kali — ăn vặt lành mạnh, không chất bảo quản.</p>
+      <div class="card-actions">
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/lien-he/">
+      <img src="/images/say-mit.jpg" alt="Mít sấy giòn" loading="lazy">
+      <span>Sấy giòn</span>
+    </a>
+    <div class="product-body">
+      <p>Trái cây sấy giòn</p>
+      <h3><a href="/lien-he/">Mít sấy giòn</a></h3>
+      <p>Mít sấy giòn (sấy chân không), giòn xốp, thơm ngọt tự nhiên — không chiên dầu.</p>
+      <div class="card-actions">
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/lien-he/">
+      <img src="/images/say-oi.jpg" alt="Ổi sấy dẻo" loading="lazy">
+      <span>Sấy dẻo</span>
+    </a>
+    <div class="product-body">
+      <p>Trái cây sấy dẻo</p>
+      <h3><a href="/lien-he/">Ổi sấy dẻo</a></h3>
+      <p>Ổi sấy dẻo, vị chua ngọt thanh, dẻo mềm — ăn vặt lành mạnh, không chất bảo quản.</p>
+      <div class="card-actions">
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article></div>
+      </div>
+      <div class="product-group">
+        <div class="product-group-head">
+          <h2>Trái cây đóng lon</h2>
+          <a class="product-group-link" href="/san-pham/dong-lon/">Xem nhóm trái cây đóng lon<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        </div>
+        <div class="product-grid"><article class="product-card">
+    <a class="product-image" href="/lien-he/">
       <img src="/images/mang-cau-dong-lon.jpg" alt="Mãng cầu xiêm cô đặc đóng lon" loading="lazy">
       <span>Today Tây Đô</span>
     </a>
@@ -2101,6 +2258,26 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article><article class="product-card">
     <a class="product-image" href="/lien-he/">
+      <img src="/images/thom-dong-lon.jpg" alt="Thơm/dứa đóng lon" loading="lazy">
+      <span>Trong nước đường nhẹ</span>
+    </a>
+    <div class="product-body">
+      <p>Trái cây đóng lon</p>
+      <h3><a href="/lien-he/">Thơm/dứa đóng lon</a></h3>
+      <p>Thơm (dứa) đóng lon dạng khoanh hoặc miếng rẻ quạt trong nước đường nhẹ — giữ vị ngọt thanh, sẵn sàng dùng.</p>
+      <div class="card-actions">
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article></div>
+      </div>
+      <div class="product-group">
+        <div class="product-group-head">
+          <h2>Trái cây đông lạnh / IQF</h2>
+          <a class="product-group-link" href="/san-pham/dong-lanh-iqf/">Xem nhóm trái cây đông lạnh / iqf<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        </div>
+        <div class="product-grid"><article class="product-card">
+    <a class="product-image" href="/lien-he/">
       <img src="/images/cat-dong-lanh.jpg" alt="Chuối đông lạnh" loading="lazy">
       <span>IQF</span>
     </a>
@@ -2113,6 +2290,39 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
       </div>
     </div>
   </article><article class="product-card">
+    <a class="product-image" href="/lien-he/">
+      <img src="/images/iqf-thanh-long.jpg" alt="Thanh long đông lạnh" loading="lazy">
+      <span>IQF</span>
+    </a>
+    <div class="product-body">
+      <p>Trái cây đông lạnh</p>
+      <h3><a href="/lien-he/">Thanh long đông lạnh</a></h3>
+      <p>Thanh long cấp đông IQF, giữ màu và dưỡng chất, phù hợp chế biến và xuất khẩu.</p>
+      <div class="card-actions">
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/lien-he/">
+      <img src="/images/iqf-thom.jpg" alt="Thơm đông lạnh" loading="lazy">
+      <span>IQF</span>
+    </a>
+    <div class="product-body">
+      <p>Trái cây đông lạnh</p>
+      <h3><a href="/lien-he/">Thơm đông lạnh</a></h3>
+      <p>Thơm (dứa) cấp đông nhanh, tiện lợi cho sinh tố, nước ép và chế biến.</p>
+      <div class="card-actions">
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article></div>
+      </div>
+      <div class="product-group">
+        <div class="product-group-head">
+          <h2>Nước ép dinh dưỡng</h2>
+          <a class="product-group-link" href="/san-pham/nuoc-ep/">Xem nhóm nước ép dinh dưỡng<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        </div>
+        <div class="product-grid"><article class="product-card">
     <a class="product-image" href="/san-pham/tropical-delight/">
       <img src="/images/tropical-delight.jpg" alt="Tropical Delight" loading="lazy">
       <span>250 mL</span>
@@ -2127,6 +2337,41 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
       </div>
     </div>
   </article><article class="product-card">
+    <a class="product-image" href="/san-pham/greenology/">
+      <img src="/images/greenology.jpg" alt="Greenology" loading="lazy">
+      <span>250 mL</span>
+    </a>
+    <div class="product-body">
+      <p>Nước ép</p>
+      <h3><a href="/san-pham/greenology/">Greenology</a></h3>
+      <p>Cải Kale · Táo · Cần tây · Ổi · Chanh</p>
+      <div class="card-actions">
+        <a href="/san-pham/greenology/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/san-pham/red-volcano/">
+      <img src="/images/red-volcano.jpg" alt="Red Volcano" loading="lazy">
+      <span>250 mL</span>
+    </a>
+    <div class="product-body">
+      <p>Nước ép</p>
+      <h3><a href="/san-pham/red-volcano/">Red Volcano</a></h3>
+      <p>Củ dền · Cà rốt · Táo · Ổi · Thơm · Chanh</p>
+      <div class="card-actions">
+        <a href="/san-pham/red-volcano/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article></div>
+      </div>
+      <div class="product-group">
+        <div class="product-group-head">
+          <h2>Sữa chua sấy thăng hoa</h2>
+          <a class="product-group-link" href="/san-pham/sua-chua-say/">Xem nhóm sữa chua sấy thăng hoa<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        </div>
+        <div class="product-grid"><article class="product-card">
     <a class="product-image" href="/san-pham/sua-chua-xoai/">
       <img src="/images/sua-chua-xoai.jpg" alt="Sữa chua sấy thăng hoa vị Xoài" loading="lazy">
       <span>Sấy thăng hoa</span>
@@ -2141,6 +2386,69 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
       </div>
     </div>
   </article><article class="product-card">
+    <a class="product-image" href="/san-pham/sua-chua-thom/">
+      <img src="/images/sua-chua-thom.jpg" alt="Sữa chua sấy thăng hoa vị Thơm" loading="lazy">
+      <span>Sấy thăng hoa</span>
+    </a>
+    <div class="product-body">
+      <p>Sữa chua trái cây sấy thăng hoa</p>
+      <h3><a href="/san-pham/sua-chua-thom/">Sữa chua sấy thăng hoa vị Thơm</a></h3>
+      <p>Viên sữa chua sấy thăng hoa vị thơm, giòn tan, giàu lợi khuẩn & canxi — ăn vặt lành mạnh.</p>
+      <div class="card-actions">
+        <a href="/san-pham/sua-chua-thom/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/san-pham/sua-chua-dau/">
+      <img src="/images/sua-chua-dau.jpg" alt="Sữa chua sấy thăng hoa vị Dâu" loading="lazy">
+      <span>Sấy thăng hoa</span>
+    </a>
+    <div class="product-body">
+      <p>Sữa chua trái cây sấy thăng hoa</p>
+      <h3><a href="/san-pham/sua-chua-dau/">Sữa chua sấy thăng hoa vị Dâu</a></h3>
+      <p>Viên sữa chua sấy thăng hoa vị dâu, giòn tan, giàu lợi khuẩn & canxi — ăn vặt lành mạnh.</p>
+      <div class="card-actions">
+        <a href="/san-pham/sua-chua-dau/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/san-pham/sua-chua-mang-cau/">
+      <img src="/images/sua-chua-mang-cau.jpg" alt="Sữa chua sấy thăng hoa vị Mãng cầu" loading="lazy">
+      <span>Sấy thăng hoa</span>
+    </a>
+    <div class="product-body">
+      <p>Sữa chua trái cây sấy thăng hoa</p>
+      <h3><a href="/san-pham/sua-chua-mang-cau/">Sữa chua sấy thăng hoa vị Mãng cầu</a></h3>
+      <p>Viên sữa chua sấy thăng hoa vị mãng cầu, giòn tan, giàu lợi khuẩn & canxi — ăn vặt lành mạnh.</p>
+      <div class="card-actions">
+        <a href="/san-pham/sua-chua-mang-cau/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/san-pham/sua-chua-chuoi/">
+      <img src="/images/sua-chua-chuoi.jpg" alt="Sữa chua sấy thăng hoa vị Chuối" loading="lazy">
+      <span>Sấy thăng hoa</span>
+    </a>
+    <div class="product-body">
+      <p>Sữa chua trái cây sấy thăng hoa</p>
+      <h3><a href="/san-pham/sua-chua-chuoi/">Sữa chua sấy thăng hoa vị Chuối</a></h3>
+      <p>Viên sữa chua sấy thăng hoa vị chuối, giòn tan, giàu lợi khuẩn & canxi — ăn vặt lành mạnh.</p>
+      <div class="card-actions">
+        <a href="/san-pham/sua-chua-chuoi/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article></div>
+      </div>
+      <div class="product-group">
+        <div class="product-group-head">
+          <h2>Trái cây nghiền nhuyễn (Purée)</h2>
+          <a class="product-group-link" href="/san-pham/puree/">Xem nhóm trái cây nghiền nhuyễn (purée)<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        </div>
+        <div class="product-grid"><article class="product-card">
     <a class="product-image" href="/san-pham/puree-xoai/">
       <img src="/images/puree-xoai.jpg" alt="Purée Xoài" loading="lazy">
       <span>Purée</span>
@@ -2154,7 +2462,106 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/san-pham/puree-chanh-day/">
+      <img src="/images/puree-chanh-day.jpg" alt="Purée Chanh dây" loading="lazy">
+      <span>Purée</span>
+    </a>
+    <div class="product-body">
+      <p>Trái cây nghiền nhuyễn (Puree)</p>
+      <h3><a href="/san-pham/puree-chanh-day/">Purée Chanh dây</a></h3>
+      <p>Purée chanh dây từ trái cây tươi, kết cấu mịn, vị đậm — cho pha chế, topping, làm bánh.</p>
+      <div class="card-actions">
+        <a href="/san-pham/puree-chanh-day/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/san-pham/puree-bo/">
+      <img src="/images/puree-bo.jpg" alt="Purée Bơ" loading="lazy">
+      <span>Purée</span>
+    </a>
+    <div class="product-body">
+      <p>Trái cây nghiền nhuyễn (Puree)</p>
+      <h3><a href="/san-pham/puree-bo/">Purée Bơ</a></h3>
+      <p>Purée bơ từ trái cây tươi, kết cấu mịn, vị đậm — cho pha chế, topping, làm bánh.</p>
+      <div class="card-actions">
+        <a href="/san-pham/puree-bo/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/san-pham/puree-thanh-long/">
+      <img src="/images/puree-thanh-long.jpg" alt="Purée Thanh long" loading="lazy">
+      <span>Purée</span>
+    </a>
+    <div class="product-body">
+      <p>Trái cây nghiền nhuyễn (Puree)</p>
+      <h3><a href="/san-pham/puree-thanh-long/">Purée Thanh long</a></h3>
+      <p>Purée thanh long từ trái cây tươi, kết cấu mịn, vị đậm — cho pha chế, topping, làm bánh.</p>
+      <div class="card-actions">
+        <a href="/san-pham/puree-thanh-long/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
   </article></div>
+      </div>
+      <div class="product-group">
+        <div class="product-group-head">
+          <h2>Sản phẩm xanh</h2>
+          <a class="product-group-link" href="/san-pham/san-pham-xanh/">Xem nhóm sản phẩm xanh<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        </div>
+        <div class="product-grid"><article class="product-card">
+    <a class="product-image" href="/san-pham/ong-hut-giay-12mm/">
+      <img src="/images/paper-straws-12mm.jpg" alt="Ống hút giấy 12mm" loading="lazy">
+      <span>Bubble tea</span>
+    </a>
+    <div class="product-body">
+      <p>Sản phẩm xanh</p>
+      <h3><a href="/san-pham/ong-hut-giay-12mm/">Ống hút giấy 12mm</a></h3>
+      <p>Ống hút giấy 12mm cho đồ uống có topping, sinh tố và bubble tea.</p>
+      <div class="card-actions">
+        <a href="/san-pham/ong-hut-giay-12mm/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article><article class="product-card">
+    <a class="product-image" href="/san-pham/ly-giay/">
+      <img src="/images/paper-cup.jpg" alt="Ly giấy và nắp" loading="lazy">
+      <span>Mở rộng danh mục</span>
+    </a>
+    <div class="product-body">
+      <p>Sản phẩm xanh</p>
+      <h3><a href="/san-pham/ly-giay/">Ly giấy và nắp</a></h3>
+      <p>Ly giấy, nắp và vật tư đồ uống có thể tùy chỉnh thiết kế, phù hợp đơn hàng thương mại.</p>
+      <div class="card-actions">
+        <a href="/san-pham/ly-giay/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article></div>
+      </div>
+      <div class="product-group">
+        <div class="product-group-head">
+          <h2>OEM / ODM theo yêu cầu</h2>
+          <a class="product-group-link" href="/san-pham/oem-odm/">Xem nhóm oem / odm theo yêu cầu<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+        </div>
+        <div class="product-grid"><article class="product-card">
+    <a class="product-image" href="/san-pham/san-pham-oem-odm/">
+      <img src="/images/factory-process.jpg" alt="Sản phẩm OEM/ODM theo yêu cầu" loading="lazy">
+      <span>Theo yêu cầu</span>
+    </a>
+    <div class="product-body">
+      <p>Sản phẩm OEM/ODM</p>
+      <h3><a href="/san-pham/san-pham-oem-odm/">Sản phẩm OEM/ODM theo yêu cầu</a></h3>
+      <p>Phát triển quy cách, bao bì và nhãn hàng riêng cho nhà phân phối, chuỗi F&amp;B và đối tác xuất khẩu.</p>
+      <div class="card-actions">
+        <a href="/san-pham/san-pham-oem-odm/">Chi tiết</a>
+        <a href="/lien-he/">Nhận báo giá</a>
+      </div>
+    </div>
+  </article></div>
+      </div>
     </section></div>
 <div class="spa-page" id="page-san-pham-ong-hut-co-bang" data-path="/san-pham/ong-hut-co-bang" hidden><section class="page-hero">
     <span class="eyebrow">Natural grass straws</span>
