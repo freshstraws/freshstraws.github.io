@@ -2045,23 +2045,42 @@ select:focus {
     
 .lang-toggle {
   display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  height: 42px;
-  padding: 0 14px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--white);
-  color: var(--green-950);
+  align-items: stretch;
+  gap: 10px;
+  height: 46px;
+  padding: 0 6px;
+  border: 0;
+  background: transparent;
   cursor: pointer;
   font-weight: 800;
   font-size: 13px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.08em;
 }
-.lang-toggle:hover { border-color: var(--green-800); }
-.lang-toggle .lang-opt.is-active { color: var(--green-800); }
+.lang-toggle .lang-opt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 3px 3px 4px;
+  border-bottom: 2px solid transparent;
+  transition: color .16s ease, border-color .16s ease;
+}
+.lang-toggle .flag {
+  display: block;
+  width: 22px;
+  height: auto;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(18, 58, 44, .12);
+  opacity: .45;
+  transition: opacity .16s ease;
+}
+.lang-toggle .lang-opt.is-active { color: var(--green-800); border-bottom-color: var(--green-800); }
+.lang-toggle .lang-opt.is-active .flag { opacity: 1; }
 .lang-toggle .lang-opt:not(.is-active) { color: var(--muted); }
-.lang-toggle .lang-sep { color: var(--line); font-weight: 500; }
+.lang-toggle:hover .lang-opt:not(.is-active) { color: var(--green-950); }
+.lang-toggle:hover .lang-opt:not(.is-active) .flag { opacity: .75; }
+.lang-toggle .lang-sep { align-self: center; width: 1px; height: 26px; background: var(--line); }
 .lang-toast {
   position: fixed;
   top: 90px;
@@ -2211,7 +2230,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
       <div class="header-actions">
         <button class="icon-button" type="button" data-search-open aria-label="Tìm kiếm"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
         
-        <button class="lang-toggle" type="button" data-lang-toggle aria-label="Chọn ngôn ngữ" title="Chuyển ngôn ngữ"><span class="lang-opt is-active" data-lang="vi">VI</span><span class="lang-sep" aria-hidden="true">/</span><span class="lang-opt" data-lang="en">EN</span></button>
+        <button class="lang-toggle" type="button" data-lang-toggle aria-label="Chọn ngôn ngữ" title="Chuyển ngôn ngữ"><span class="lang-opt is-active" data-lang="vi"><span class="lang-code">VI</span><svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#DA251D"></rect><path fill="#FF0" d="M15 4.39 16.39 8.68 20.9 8.68 17.25 11.32 18.64 15.61 15 12.96 11.36 15.61 12.75 11.32 9.1 8.68 13.61 8.68Z"></path></svg></span><span class="lang-sep" aria-hidden="true"></span><span class="lang-opt" data-lang="en"><span class="lang-code">EN</span><svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><clipPath id="fs-uk-clip"><path d="M15 10h15v10zv10H0zH0V0zV0h15z"></path></clipPath><rect width="30" height="20" fill="#012169"></rect><path d="M0 0l30 20M30 0L0 20" stroke="#fff" stroke-width="4"></path><path d="M0 0l30 20M30 0L0 20" stroke="#C8102E" stroke-width="2.4" clip-path="url(#fs-uk-clip)"></path><path d="M15 0v20M0 10h30" stroke="#fff" stroke-width="6.6"></path><path d="M15 0v20M0 10h30" stroke="#C8102E" stroke-width="4"></path></svg></span></button>
       </div>
     </div>
     <nav class="mobile-nav" data-mobile-menu aria-label="Điều hướng mobile">
