@@ -543,6 +543,136 @@ p {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.shop-layout {
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.shop-side {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 22px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.filter-block h3 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.filter-search {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  font: inherit;
+  font-size: 15px;
+}
+
+.filter-search:focus {
+  outline: 2px solid var(--green-800);
+  outline-offset: 1px;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.filter-chip {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--green-950);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.filter-chip:hover {
+  border-color: var(--green-800);
+}
+
+.filter-chip.is-on {
+  background: var(--green-800);
+  border-color: var(--green-800);
+  color: var(--white);
+}
+
+.filter-chip[hidden] {
+  display: none;
+}
+
+.filter-reset {
+  justify-self: start;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--muted);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.shop-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.shop-count {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.shop-filter-btn {
+  display: none;
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--green-950);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.shop-empty {
+  padding: 28px;
+  border: 1px dashed rgba(31, 107, 79, 0.34);
+  border-radius: var(--radius);
+  color: var(--muted);
+  text-align: center;
+}
+
+.shop-empty a {
+  color: var(--green-800);
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.product-group[hidden],
+.product-card[hidden] {
+  display: none !important;
+}
+
 .product-group + .product-group {
   margin-top: 46px;
 }
@@ -1547,6 +1677,38 @@ select:focus {
     right: 16px;
     bottom: 16px;
   }
+
+  .shop-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .shop-filter-btn {
+    display: block;
+  }
+
+  .shop-side {
+    position: fixed;
+    inset: 0 0 0 auto;
+    z-index: 90;
+    width: min(320px, 86vw);
+    max-height: none;
+    padding: 20px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    transform: translateX(100%);
+    transition: transform .24s ease;
+    align-content: start;
+  }
+
+  .shop-side.is-open {
+    transform: translateX(0);
+  }
+
+  .filter-reset {
+    justify-self: stretch;
+    text-align: center;
+  }
 }
 
     .spa-page[hidden] { display: none !important; }
@@ -2096,23 +2258,56 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     <p>Toàn bộ 29 sản phẩm thuộc 9 nhóm ngành hàng của Fresh Straws: ống hút cỏ bàng, trái cây sấy, trái cây đóng lon, đông lạnh/IQF, nước ép, sữa chua sấy thăng hoa, purée, sản phẩm xanh và hàng OEM/ODM.</p>
   </section>
     <section class="section">
-      <div class="tabs">
-        <a class="active" href="/san-pham/">Tất cả</a>
-        <a class="" href="/san-pham/ong-hut-co-bang/">Ống hút cỏ bàng</a>
-        <a class="" href="/san-pham/trai-cay-say/">Trái cây sấy</a>
-        <a class="" href="/san-pham/dong-lon/">Trái cây đóng lon</a>
-        <a class="" href="/san-pham/dong-lanh-iqf/">Đông lạnh / IQF</a>
-        <a class="" href="/san-pham/nuoc-ep/">Nước ép</a>
-        <a class="" href="/san-pham/sua-chua-say/">Sữa chua sấy thăng hoa</a>
-              <a class="" href="/san-pham/puree/">Trái cây nghiền nhuyễn (Puree)</a>
-        <a class="" href="/san-pham/san-pham-xanh/">Sản phẩm xanh</a>
-      </div>
-      <div class="product-group">
+      <div class="shop-layout">
+        <aside class="shop-side" data-shop-side>
+          <div class="filter-block">
+            <h3>Tìm kiếm</h3>
+            <input class="filter-search" type="search" placeholder="Tên sản phẩm, nguyên liệu…" data-filter-q aria-label="Tìm sản phẩm theo tên">
+          </div>
+          <div class="filter-block">
+            <h3>Nhóm ngành hàng</h3>
+            <div class="filter-chips" data-filter-group="cat">
+            <button type="button" class="filter-chip is-on" data-cat="">Tất cả</button>
+            <button type="button" class="filter-chip" data-cat="ong-hut-co-bang">Ống hút cỏ bàng</button>
+            <button type="button" class="filter-chip" data-cat="trai-cay-say">Trái cây sấy</button>
+            <button type="button" class="filter-chip" data-cat="dong-lon">Trái cây đóng lon</button>
+            <button type="button" class="filter-chip" data-cat="dong-lanh-iqf">Đông lạnh / IQF</button>
+            <button type="button" class="filter-chip" data-cat="nuoc-ep">Nước ép</button>
+            <button type="button" class="filter-chip" data-cat="sua-chua-say">Sữa chua sấy thăng hoa</button>
+            <button type="button" class="filter-chip" data-cat="puree">Purée</button>
+            <button type="button" class="filter-chip" data-cat="san-pham-xanh">Sản phẩm xanh</button>
+            <button type="button" class="filter-chip" data-cat="oem-odm">OEM / ODM</button>
+            </div>
+          </div>
+          <div class="filter-block">
+            <h3>Công nghệ chế biến</h3>
+            <div class="filter-chips" data-filter-group="tech">
+            <button type="button" class="filter-chip is-on" data-tech="">Tất cả</button>
+            <button type="button" class="filter-chip" data-tech="say-kho">Sấy khô tự nhiên</button>
+            <button type="button" class="filter-chip" data-tech="say-deo">Sấy dẻo</button>
+            <button type="button" class="filter-chip" data-tech="say-gion">Sấy giòn</button>
+            <button type="button" class="filter-chip" data-tech="say-thang-hoa">Sấy thăng hoa</button>
+            <button type="button" class="filter-chip" data-tech="dong-lanh">Đông lạnh IQF</button>
+            <button type="button" class="filter-chip" data-tech="dong-lon">Đóng lon / cô đặc</button>
+            <button type="button" class="filter-chip" data-tech="puree">Nghiền purée</button>
+            <button type="button" class="filter-chip" data-tech="ep-tiet-trung">Ép & tiệt trùng</button>
+            <button type="button" class="filter-chip" data-tech="giay">Sản phẩm giấy</button>
+            <button type="button" class="filter-chip" data-tech="theo-yeu-cau">Theo yêu cầu</button>
+            </div>
+          </div>
+          <button type="button" class="filter-reset" data-filter-reset hidden>Xoá bộ lọc</button>
+        </aside>
+        <div class="shop-main">
+          <div class="shop-bar">
+            <p class="shop-count" data-shop-count>Hiển thị 29 / 29 sản phẩm</p>
+            <button type="button" class="shop-filter-btn" data-shop-open>Bộ lọc</button>
+          </div>
+          <div class="product-group" data-group="ong-hut-co-bang">
         <div class="product-group-head">
           <h2>Ống hút cỏ bàng</h2>
           <a class="product-group-link" href="/san-pham/ong-hut-co-bang/">Xem nhóm ống hút cỏ bàng<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
         </div>
-        <div class="product-grid"><article class="product-card">
+        <div class="product-grid"><article class="product-card" data-cat="ong-hut-co-bang" data-tech="say-kho" data-name="Ống hút cỏ bàng khô size M">
     <a class="product-image" href="/san-pham/ong-hut-co-bang-kho-m/">
       <img src="/images/ong-hut-co-bang.jpg" alt="Ống hút cỏ bàng khô size M" loading="lazy">
       <span>Size M</span>
@@ -2126,7 +2321,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="ong-hut-co-bang" data-tech="say-kho" data-name="Ống hút cỏ bàng khô size L">
     <a class="product-image" href="/san-pham/ong-hut-co-bang-kho-l/">
       <img src="/images/ong-hut-co-bang.jpg" alt="Ống hút cỏ bàng khô size L" loading="lazy">
       <span>Size L</span>
@@ -2140,7 +2335,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="ong-hut-co-bang" data-tech="say-kho" data-name="Ống hút cỏ bàng khô size XL">
     <a class="product-image" href="/san-pham/ong-hut-co-bang-kho-xl/">
       <img src="/images/ong-hut-co-bang.jpg" alt="Ống hút cỏ bàng khô size XL" loading="lazy">
       <span>Size XL</span>
@@ -2156,12 +2351,12 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" data-group="trai-cay-say">
         <div class="product-group-head">
           <h2>Trái cây sấy</h2>
           <a class="product-group-link" href="/san-pham/trai-cay-say/">Xem nhóm trái cây sấy<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
         </div>
-        <div class="product-grid"><article class="product-card">
+        <div class="product-grid"><article class="product-card" data-cat="trai-cay-say" data-tech="say-deo" data-name="Mãng cầu sấy dẻo">
     <a class="product-image" href="/lien-he/">
       <img src="/images/cat-trai-cay-say.jpg" alt="Mãng cầu sấy dẻo" loading="lazy">
       <span>Sấy dẻo</span>
@@ -2174,7 +2369,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="trai-cay-say" data-tech="say-deo" data-name="Xoài sấy dẻo">
     <a class="product-image" href="/lien-he/">
       <img src="/images/say-xoai.jpg" alt="Xoài sấy dẻo" loading="lazy">
       <span>Sấy dẻo</span>
@@ -2187,7 +2382,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="trai-cay-say" data-tech="say-deo" data-name="Thơm sấy dẻo muối ớt">
     <a class="product-image" href="/lien-he/">
       <img src="/images/say-thom-muoi-ot.jpg" alt="Thơm sấy dẻo muối ớt" loading="lazy">
       <span>Vị muối ớt</span>
@@ -2200,7 +2395,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="trai-cay-say" data-tech="say-deo" data-name="Chuối sấy dẻo">
     <a class="product-image" href="/lien-he/">
       <img src="/images/say-chuoi.jpg" alt="Chuối sấy dẻo" loading="lazy">
       <span>Sấy dẻo</span>
@@ -2213,7 +2408,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="trai-cay-say" data-tech="say-gion" data-name="Mít sấy giòn">
     <a class="product-image" href="/lien-he/">
       <img src="/images/say-mit.jpg" alt="Mít sấy giòn" loading="lazy">
       <span>Sấy giòn</span>
@@ -2226,7 +2421,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="trai-cay-say" data-tech="say-deo" data-name="Ổi sấy dẻo">
     <a class="product-image" href="/lien-he/">
       <img src="/images/say-oi.jpg" alt="Ổi sấy dẻo" loading="lazy">
       <span>Sấy dẻo</span>
@@ -2241,12 +2436,12 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" data-group="dong-lon">
         <div class="product-group-head">
           <h2>Trái cây đóng lon</h2>
           <a class="product-group-link" href="/san-pham/dong-lon/">Xem nhóm trái cây đóng lon<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
         </div>
-        <div class="product-grid"><article class="product-card">
+        <div class="product-grid"><article class="product-card" data-cat="dong-lon" data-tech="dong-lon" data-name="Mãng cầu xiêm cô đặc">
     <a class="product-image" href="/lien-he/">
       <img src="/images/mang-cau-dong-lon.jpg" alt="Mãng cầu xiêm cô đặc đóng lon" loading="lazy">
       <span>Today Tây Đô</span>
@@ -2259,7 +2454,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="dong-lon" data-tech="dong-lon" data-name="Thơm/dứa đóng lon">
     <a class="product-image" href="/lien-he/">
       <img src="/images/thom-dong-lon.jpg" alt="Thơm/dứa đóng lon" loading="lazy">
       <span>Trong nước đường nhẹ</span>
@@ -2274,12 +2469,12 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" data-group="dong-lanh-iqf">
         <div class="product-group-head">
           <h2>Trái cây đông lạnh / IQF</h2>
           <a class="product-group-link" href="/san-pham/dong-lanh-iqf/">Xem nhóm trái cây đông lạnh / iqf<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
         </div>
-        <div class="product-grid"><article class="product-card">
+        <div class="product-grid"><article class="product-card" data-cat="dong-lanh-iqf" data-tech="dong-lanh" data-name="Chuối đông lạnh">
     <a class="product-image" href="/lien-he/">
       <img src="/images/cat-dong-lanh.jpg" alt="Chuối đông lạnh" loading="lazy">
       <span>IQF</span>
@@ -2292,7 +2487,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="dong-lanh-iqf" data-tech="dong-lanh" data-name="Thanh long đông lạnh">
     <a class="product-image" href="/lien-he/">
       <img src="/images/iqf-thanh-long.jpg" alt="Thanh long đông lạnh" loading="lazy">
       <span>IQF</span>
@@ -2305,7 +2500,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="dong-lanh-iqf" data-tech="dong-lanh" data-name="Thơm đông lạnh">
     <a class="product-image" href="/lien-he/">
       <img src="/images/iqf-thom.jpg" alt="Thơm đông lạnh" loading="lazy">
       <span>IQF</span>
@@ -2320,12 +2515,12 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" data-group="nuoc-ep">
         <div class="product-group-head">
           <h2>Nước ép dinh dưỡng</h2>
           <a class="product-group-link" href="/san-pham/nuoc-ep/">Xem nhóm nước ép dinh dưỡng<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
         </div>
-        <div class="product-grid"><article class="product-card">
+        <div class="product-grid"><article class="product-card" data-cat="nuoc-ep" data-tech="ep-tiet-trung" data-name="Tropical Delight">
     <a class="product-image" href="/san-pham/tropical-delight/">
       <img src="/images/tropical-delight.jpg" alt="Tropical Delight" loading="lazy">
       <span>250 mL</span>
@@ -2339,7 +2534,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="nuoc-ep" data-tech="ep-tiet-trung" data-name="Greenology">
     <a class="product-image" href="/san-pham/greenology/">
       <img src="/images/greenology.jpg" alt="Greenology" loading="lazy">
       <span>250 mL</span>
@@ -2353,7 +2548,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="nuoc-ep" data-tech="ep-tiet-trung" data-name="Red Volcano">
     <a class="product-image" href="/san-pham/red-volcano/">
       <img src="/images/red-volcano.jpg" alt="Red Volcano" loading="lazy">
       <span>250 mL</span>
@@ -2369,12 +2564,12 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" data-group="sua-chua-say">
         <div class="product-group-head">
           <h2>Sữa chua sấy thăng hoa</h2>
           <a class="product-group-link" href="/san-pham/sua-chua-say/">Xem nhóm sữa chua sấy thăng hoa<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
         </div>
-        <div class="product-grid"><article class="product-card">
+        <div class="product-grid"><article class="product-card" data-cat="sua-chua-say" data-tech="say-thang-hoa" data-name="Sữa chua sấy thăng hoa vị Xoài">
     <a class="product-image" href="/san-pham/sua-chua-xoai/">
       <img src="/images/sua-chua-xoai.jpg" alt="Sữa chua sấy thăng hoa vị Xoài" loading="lazy">
       <span>Sấy thăng hoa</span>
@@ -2388,7 +2583,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="sua-chua-say" data-tech="say-thang-hoa" data-name="Sữa chua sấy thăng hoa vị Thơm">
     <a class="product-image" href="/san-pham/sua-chua-thom/">
       <img src="/images/sua-chua-thom.jpg" alt="Sữa chua sấy thăng hoa vị Thơm" loading="lazy">
       <span>Sấy thăng hoa</span>
@@ -2402,7 +2597,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="sua-chua-say" data-tech="say-thang-hoa" data-name="Sữa chua sấy thăng hoa vị Dâu">
     <a class="product-image" href="/san-pham/sua-chua-dau/">
       <img src="/images/sua-chua-dau.jpg" alt="Sữa chua sấy thăng hoa vị Dâu" loading="lazy">
       <span>Sấy thăng hoa</span>
@@ -2416,7 +2611,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="sua-chua-say" data-tech="say-thang-hoa" data-name="Sữa chua sấy thăng hoa vị Mãng cầu">
     <a class="product-image" href="/san-pham/sua-chua-mang-cau/">
       <img src="/images/sua-chua-mang-cau.jpg" alt="Sữa chua sấy thăng hoa vị Mãng cầu" loading="lazy">
       <span>Sấy thăng hoa</span>
@@ -2430,7 +2625,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="sua-chua-say" data-tech="say-thang-hoa" data-name="Sữa chua sấy thăng hoa vị Chuối">
     <a class="product-image" href="/san-pham/sua-chua-chuoi/">
       <img src="/images/sua-chua-chuoi.jpg" alt="Sữa chua sấy thăng hoa vị Chuối" loading="lazy">
       <span>Sấy thăng hoa</span>
@@ -2446,12 +2641,12 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" data-group="puree">
         <div class="product-group-head">
           <h2>Trái cây nghiền nhuyễn (Purée)</h2>
           <a class="product-group-link" href="/san-pham/puree/">Xem nhóm trái cây nghiền nhuyễn (purée)<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
         </div>
-        <div class="product-grid"><article class="product-card">
+        <div class="product-grid"><article class="product-card" data-cat="puree" data-tech="puree" data-name="Purée Xoài">
     <a class="product-image" href="/san-pham/puree-xoai/">
       <img src="/images/puree-xoai.jpg" alt="Purée Xoài" loading="lazy">
       <span>Purée</span>
@@ -2465,7 +2660,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="puree" data-tech="puree" data-name="Purée Chanh dây">
     <a class="product-image" href="/san-pham/puree-chanh-day/">
       <img src="/images/puree-chanh-day.jpg" alt="Purée Chanh dây" loading="lazy">
       <span>Purée</span>
@@ -2479,7 +2674,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="puree" data-tech="puree" data-name="Purée Bơ">
     <a class="product-image" href="/san-pham/puree-bo/">
       <img src="/images/puree-bo.jpg" alt="Purée Bơ" loading="lazy">
       <span>Purée</span>
@@ -2493,7 +2688,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="puree" data-tech="puree" data-name="Purée Thanh long">
     <a class="product-image" href="/san-pham/puree-thanh-long/">
       <img src="/images/puree-thanh-long.jpg" alt="Purée Thanh long" loading="lazy">
       <span>Purée</span>
@@ -2509,12 +2704,12 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" data-group="san-pham-xanh">
         <div class="product-group-head">
           <h2>Sản phẩm xanh</h2>
           <a class="product-group-link" href="/san-pham/san-pham-xanh/">Xem nhóm sản phẩm xanh<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
         </div>
-        <div class="product-grid"><article class="product-card">
+        <div class="product-grid"><article class="product-card" data-cat="san-pham-xanh" data-tech="giay" data-name="Ống hút giấy 12mm">
     <a class="product-image" href="/san-pham/ong-hut-giay-12mm/">
       <img src="/images/paper-straws-12mm.jpg" alt="Ống hút giấy 12mm" loading="lazy">
       <span>Bubble tea</span>
@@ -2528,7 +2723,7 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <a href="/lien-he/">Nhận báo giá</a>
       </div>
     </div>
-  </article><article class="product-card">
+  </article><article class="product-card" data-cat="san-pham-xanh" data-tech="giay" data-name="Ly giấy và nắp">
     <a class="product-image" href="/san-pham/ly-giay/">
       <img src="/images/paper-cup.jpg" alt="Ly giấy và nắp" loading="lazy">
       <span>Mở rộng danh mục</span>
@@ -2544,12 +2739,12 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
   </article></div>
       </div>
-      <div class="product-group">
+      <div class="product-group" data-group="oem-odm">
         <div class="product-group-head">
           <h2>OEM / ODM theo yêu cầu</h2>
           <a class="product-group-link" href="/san-pham/oem-odm/">Xem nhóm oem / odm theo yêu cầu<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
         </div>
-        <div class="product-grid"><article class="product-card">
+        <div class="product-grid"><article class="product-card" data-cat="oem-odm" data-tech="theo-yeu-cau" data-name="Sản phẩm OEM/ODM theo yêu cầu">
     <a class="product-image" href="/san-pham/san-pham-oem-odm/">
       <img src="/images/factory-process.jpg" alt="Sản phẩm OEM/ODM theo yêu cầu" loading="lazy">
       <span>Theo yêu cầu</span>
@@ -2564,6 +2759,9 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
       </div>
     </div>
   </article></div>
+      </div>
+          <p class="shop-empty" data-shop-empty hidden>Không có sản phẩm nào khớp bộ lọc. Hãy thử bỏ bớt điều kiện hoặc <a href="/lien-he/">liên hệ để đặt hàng theo yêu cầu</a>.</p>
+        </div>
       </div>
     </section></div>
 <div class="spa-page" id="page-san-pham-ong-hut-co-bang" data-path="/san-pham/ong-hut-co-bang" hidden><section class="page-hero">
@@ -4304,6 +4502,91 @@ function initSpaRouter() {
   showPage(location.pathname);
 }
 initSpaRouter();
+
+function initShopFilter() {
+  const side = document.querySelector("[data-shop-side]");
+  if (!side) return;
+  const root = side.closest(".shop-layout");
+  const cards = Array.from(root.querySelectorAll(".product-card"));
+  const groups = Array.from(root.querySelectorAll(".product-group"));
+  const countEl = root.querySelector("[data-shop-count]");
+  const emptyEl = root.querySelector("[data-shop-empty]");
+  const resetEl = root.querySelector("[data-filter-reset]");
+  const search = root.querySelector("[data-filter-q]");
+  const openBtn = root.querySelector("[data-shop-open]");
+  const state = { cat: "", tech: "", q: "" };
+
+  const norm = (text) => (text || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d");
+
+  cards.forEach((card) => {
+    card.dataset.search = norm(card.dataset.name + " " + card.textContent);
+  });
+
+  function apply() {
+    const q = norm(state.q).trim();
+    let shown = 0;
+    cards.forEach((card) => {
+      const ok = (!state.cat || card.dataset.cat === state.cat)
+        && (!state.tech || card.dataset.tech === state.tech)
+        && (!q || card.dataset.search.includes(q));
+      card.hidden = !ok;
+      if (ok) shown += 1;
+    });
+    groups.forEach((group) => {
+      group.hidden = !group.querySelector(".product-card:not([hidden])");
+    });
+    countEl.textContent = "Hiển thị " + shown + " / " + cards.length + " sản phẩm";
+    emptyEl.hidden = shown > 0;
+    resetEl.hidden = !(state.cat || state.tech || state.q);
+
+    // ẩn chip công nghệ không còn sản phẩm nào trong nhóm đang chọn
+    root.querySelectorAll("[data-filter-group='tech'] .filter-chip").forEach((chip) => {
+      const value = chip.dataset.tech;
+      if (!value) return;
+      const exists = cards.some((card) => card.dataset.tech === value
+        && (!state.cat || card.dataset.cat === state.cat));
+      chip.hidden = !exists;
+      if (!exists && state.tech === value) state.tech = "";
+    });
+  }
+
+  root.querySelectorAll(".filter-chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const key = chip.closest("[data-filter-group]").dataset.filterGroup;
+      state[key] = chip.dataset[key] || "";
+      chip.closest(".filter-chips").querySelectorAll(".filter-chip")
+        .forEach((other) => other.classList.toggle("is-on", other === chip));
+      apply();
+    });
+  });
+
+  search.addEventListener("input", () => { state.q = search.value; apply(); });
+
+  resetEl.addEventListener("click", () => {
+    state.cat = ""; state.tech = ""; state.q = "";
+    search.value = "";
+    root.querySelectorAll(".filter-chips").forEach((box) => {
+      box.querySelectorAll(".filter-chip").forEach((chip, index) => chip.classList.toggle("is-on", index === 0));
+    });
+    apply();
+  });
+
+  if (openBtn) {
+    openBtn.addEventListener("click", () => side.classList.toggle("is-open"));
+    document.addEventListener("click", (event) => {
+      if (!side.classList.contains("is-open")) return;
+      if (side.contains(event.target) || openBtn.contains(event.target)) return;
+      side.classList.remove("is-open");
+    });
+  }
+
+  apply();
+}
+initShopFilter();
 
 </script>
   </body>
