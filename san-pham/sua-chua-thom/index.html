@@ -748,6 +748,120 @@ p {
   margin-top: 46px;
 }
 
+.rail-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.rail-head .section-heading {
+  margin-bottom: 0;
+}
+
+.rail-more {
+  flex: none;
+}
+
+.rail-wrap {
+  position: relative;
+  margin-top: 30px;
+}
+
+.rail {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+  height: 0;
+}
+
+.rail > .product-card {
+  flex: 0 0 302px;
+  scroll-snap-align: start;
+}
+
+.rail-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--green-800);
+  box-shadow: 0 4px 14px rgba(18, 58, 44, .22);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: opacity .18s ease, transform .18s ease, background .18s ease, color .18s ease;
+}
+
+.rail-nav svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.rail-nav:hover {
+  background: var(--green-800);
+  color: var(--white);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.rail-prev {
+  left: -14px;
+}
+
+.rail-next {
+  right: -14px;
+}
+
+.rail-nav[disabled] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .rail-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .rail > .product-card {
+    flex: 0 0 248px;
+  }
+
+  .rail-nav {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail {
+    scroll-behavior: auto;
+  }
+
+  .rail-nav:hover {
+    transform: translateY(-50%);
+  }
+}
+
 .mq-sec {
   overflow: hidden;
 }
@@ -2280,12 +2394,17 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
       <p style="text-align:center;margin-top:18px"><a class="btn btn-secondary" href="/ve-chung-toi/chung-nhan/">Xem chi tiết chứng nhận <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a></p>
     </section>
     <section class="section">
-      <div class="section-heading">
+      <div class="rail-head">
+        <div class="section-heading">
     <span class="eyebrow">Ngành hàng</span>
     <h2>Các nhóm sản phẩm chính của Fresh Straws</h2>
     <p>Từ ống hút cỏ bàng đến trái cây sấy, trái cây đông lạnh và nước ép dinh dưỡng — cùng năng lực OEM/ODM cho đối tác xuất khẩu.</p>
   </div>
-      <div class="product-grid"><article class="product-card">
+        <a class="btn btn-secondary rail-more" href="/san-pham/">Xem thêm <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+      </div>
+      <div class="rail-wrap">
+        <button type="button" class="rail-nav rail-prev" data-rail-prev aria-label="Nhóm trước"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
+        <div class="rail" data-rail><article class="product-card">
     <a class="product-image" href="/san-pham/ong-hut-co-bang/">
       <img src="/images/ong-hut-co-bang.jpg" alt="Ống hút cỏ bàng" loading="lazy">
       <span>Sản phẩm chủ lực</span>
@@ -2370,6 +2489,8 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
       </div>
     </div>
   </article></div>
+        <button type="button" class="rail-nav rail-next" data-rail-next aria-label="Nhóm tiếp theo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button>
+      </div>
     </section>
     <section class="section soft-band">
       <div class="section-heading">
@@ -4830,6 +4951,35 @@ function initSpaRouter() {
   showPage(location.pathname);
 }
 initSpaRouter();
+
+function initRails() {
+  document.querySelectorAll("[data-rail]").forEach((rail) => {
+    const wrap = rail.closest(".rail-wrap");
+    if (!wrap) return;
+    const prev = wrap.querySelector("[data-rail-prev]");
+    const next = wrap.querySelector("[data-rail-next]");
+
+    function step() {
+      const card = rail.querySelector(".product-card");
+      const gap = parseFloat(getComputedStyle(rail).gap) || 18;
+      const one = card ? card.getBoundingClientRect().width + gap : rail.clientWidth;
+      return Math.max(one, Math.floor(rail.clientWidth / one) * one);
+    }
+
+    function sync() {
+      const max = rail.scrollWidth - rail.clientWidth - 2;
+      if (prev) prev.disabled = rail.scrollLeft <= 2;
+      if (next) next.disabled = rail.scrollLeft >= max;
+    }
+
+    if (prev) prev.addEventListener("click", () => rail.scrollBy({ left: -step(), behavior: "smooth" }));
+    if (next) next.addEventListener("click", () => rail.scrollBy({ left: step(), behavior: "smooth" }));
+    rail.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
+    sync();
+  });
+}
+initRails();
 
 function initShopFilter() {
   const side = document.querySelector("[data-shop-side]");
