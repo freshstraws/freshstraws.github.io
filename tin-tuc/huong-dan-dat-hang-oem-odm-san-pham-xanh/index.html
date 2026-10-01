@@ -628,6 +628,11 @@ p {
   cursor: pointer;
 }
 
+.shop-side-close,
+.shop-scrim {
+  display: none;
+}
+
 .shop-bar {
   display: flex;
   align-items: center;
@@ -1705,6 +1710,41 @@ select:focus {
     transform: translateX(0);
   }
 
+  .shop-side-close {
+    display: grid;
+    place-items: center;
+    justify-self: end;
+    width: 38px;
+    height: 38px;
+    margin: -4px -4px 0 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--green-950);
+    cursor: pointer;
+  }
+
+  .shop-side-close svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  .shop-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 89;
+    background: rgba(18, 58, 44, 0.45);
+  }
+
+  .shop-scrim[hidden] {
+    display: none;
+  }
+
   .filter-reset {
     justify-self: stretch;
     text-align: center;
@@ -2260,7 +2300,9 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
   </section>
     <section class="section">
       <div class="shop-layout">
+        <div class="shop-scrim" data-shop-scrim hidden></div>
         <aside class="shop-side" data-shop-side>
+          <button type="button" class="shop-side-close" data-shop-close aria-label="Đóng bộ lọc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
           <div class="filter-block">
             <h3>Tìm kiếm</h3>
             <input class="filter-search" type="search" placeholder="Tên sản phẩm, nguyên liệu…" data-filter-q aria-label="Tìm sản phẩm theo tên">
@@ -4576,14 +4618,20 @@ function initShopFilter() {
     apply();
   });
 
-  if (openBtn) {
-    openBtn.addEventListener("click", () => side.classList.toggle("is-open"));
-    document.addEventListener("click", (event) => {
-      if (!side.classList.contains("is-open")) return;
-      if (side.contains(event.target) || openBtn.contains(event.target)) return;
-      side.classList.remove("is-open");
-    });
+  const scrim = root.querySelector("[data-shop-scrim]");
+  const closeBtn = root.querySelector("[data-shop-close]");
+
+  function setDrawer(open) {
+    side.classList.toggle("is-open", open);
+    if (scrim) scrim.hidden = !open;
   }
+
+  if (openBtn) openBtn.addEventListener("click", () => setDrawer(true));
+  if (closeBtn) closeBtn.addEventListener("click", () => setDrawer(false));
+  if (scrim) scrim.addEventListener("click", () => setDrawer(false));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setDrawer(false);
+  });
 
   apply();
 }
