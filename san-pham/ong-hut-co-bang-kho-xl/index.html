@@ -189,7 +189,7 @@ select {
 .desktop-nav ul {
   display: flex;
   justify-content: center;
-  gap: 4px;
+  gap: 16px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -208,12 +208,32 @@ select {
   color: var(--teal-900);
   font-size: 15px;
   font-weight: 700;
+  transform-origin: center;
+  transition: transform .18s cubic-bezier(.2, .8, .2, 1), background .18s ease, color .18s ease;
 }
 
 .nav-link:hover,
 .nav-link.is-active {
   background: var(--green-100);
   color: var(--green-800);
+}
+
+.nav-link:hover,
+.nav-item:hover > .nav-link,
+.nav-link:focus-visible {
+  transform: scale(1.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link {
+    transition: background .18s ease, color .18s ease;
+  }
+
+  .nav-link:hover,
+  .nav-item:hover > .nav-link,
+  .nav-link:focus-visible {
+    transform: none;
+  }
 }
 
 .dropdown-panel {
