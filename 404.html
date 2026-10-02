@@ -4826,20 +4826,8 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <button type="button" data-chat-toggle aria-label="Đóng chat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
       </div>
       <div class="chat-body">
-        <p>Xin chào, Fresh Straws có thể hỗ trợ gì cho bạn?</p>
-        <button type="button" data-chat-choice="Nhận báo giá">Nhận báo giá</button>
-        <button type="button" data-chat-choice="Tư vấn trái cây sấy">Trái cây sấy</button>
-        <button type="button" data-chat-choice="Tư vấn trái cây đông lạnh/IQF">Đông lạnh / IQF</button>
-        <button type="button" data-chat-choice="Tư vấn nước ép dinh dưỡng">Nước ép</button>
-        <button type="button" data-chat-choice="Tải catalogue">Tải catalogue</button>
-        <button type="button" data-chat-choice="Liên hệ sales">Liên hệ sales</button>
+        <p>Xin chào! Chọn kênh bên dưới để trao đổi trực tiếp với đội sales Fresh Straws.</p>
       </div>
-      <form class="chat-form" data-form>
-        <input class="chat-contact" type="text" name="contact" placeholder="Số điện thoại hoặc email của bạn" aria-label="Số điện thoại hoặc email" required>
-        <input type="text" name="message" placeholder="Nhập tin nhắn..." aria-label="Tin nhắn chat">
-        <button type="submit">Gửi</button>
-        <small data-form-feedback></small>
-      </form>
       <div class="chat-channels">
         <span class="chat-channels-label">Kết nối trực tiếp</span>
         <a class="chat-channel" href="tel:0708735327"><span class="ch-ico" style="background:#1f6b4f"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span><span>Hotline <strong>0708 735 327</strong></span></a>
@@ -4998,15 +4986,6 @@ function initChat() {
     button.addEventListener("click", () => {
       const open = panel.classList.toggle("is-open");
       panel.setAttribute("aria-hidden", String(!open));
-    });
-  });
-
-  $$("[data-chat-choice]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const input = $('.chat-form [name="message"]');
-      if (input) input.value = button.dataset.chatChoice || "";
-      const contact = $('.chat-form [name="contact"]');
-      (contact && !contact.value ? contact : input)?.focus();
     });
   });
 }
