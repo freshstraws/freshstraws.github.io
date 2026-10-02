@@ -1,6 +1,17 @@
 <!doctype html>
 <html lang="vi">
   <head>
+    <script>
+      (function () {
+        try {
+          var path = location.pathname.replace(/\/+$/, "");
+          var isHome = path === "" || path === "/index.html";
+          var seen = sessionStorage.getItem("fs_intro") === "1";
+          var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (isHome && !seen && !reduce) document.documentElement.classList.add("intro-on");
+        } catch (e) {}
+      })();
+    </script>
     <!-- Traffic source -> dataLayer (chạy trước GTM để thẻ đọc được ngay) -->
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -2428,6 +2439,132 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T443KDBH"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <style>
+      #intro { display: none; }
+      .intro-on { overflow: hidden; }
+      .intro-on #intro {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: radial-gradient(circle at 50% 45%, #1f6b4f 0, #123a2c 58%, #0b241b 100%);
+        transition: transform .85s cubic-bezier(.76, 0, .24, 1);
+      }
+      #intro .glow {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0;
+        background: radial-gradient(circle at 50% 45%, rgba(126, 203, 160, .34) 0, transparent 62%);
+        animation: fsGlow 2.1s ease-out .15s forwards;
+      }
+      #intro .box { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 24px; width: 100%; }
+      #intro .mark {
+        width: min(280px, 72vw);
+        padding: 16px 22px;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 18px 50px rgba(0, 0, 0, .25);
+        opacity: 0;
+        filter: blur(12px);
+        transform: scale(.82);
+        animation: fsMark 1.05s cubic-bezier(.22, 1, .36, 1) .1s forwards;
+      }
+      #intro .mark img { display: block; width: 100%; height: auto; }
+      #intro .wordwrap { overflow: hidden; margin-top: 26px; padding: 4px 0; }
+      #intro .word {
+        display: block;
+        margin: 0;
+        color: #fff;
+        font-size: clamp(17px, 3.2vw, 24px);
+        font-weight: 900;
+        letter-spacing: .02em;
+        transform: translateY(110%);
+        opacity: 0;
+        animation: fsWord .95s cubic-bezier(.22, 1, .36, 1) .55s forwards;
+      }
+      #intro .rule {
+        width: min(260px, 52vw);
+        height: 1px;
+        margin-top: 28px;
+        transform: scaleX(0);
+        background: linear-gradient(90deg, transparent, #7ecba0, transparent);
+        animation: fsRule .8s cubic-bezier(.22, 1, .36, 1) 1s forwards;
+      }
+      #intro .tag {
+        margin: 18px 0 0;
+        opacity: 0;
+        color: rgba(255, 255, 255, .66);
+        font-size: 11px;
+        letter-spacing: .42em;
+        text-transform: uppercase;
+        font-weight: 700;
+        animation: fsTag .9s ease-out 1.25s forwards;
+      }
+      #intro .skip {
+        position: absolute;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        background: 0 0;
+        border: 0;
+        cursor: pointer;
+        padding: 8px 14px;
+        color: rgba(255, 255, 255, .45);
+        font-family: inherit;
+        font-size: 10px;
+        letter-spacing: .24em;
+        text-transform: uppercase;
+        animation: fsTag .8s ease-out 1.6s forwards;
+      }
+      #intro .skip:hover { color: rgba(255, 255, 255, .9); }
+      #intro.up { transform: translateY(-100%); }
+      @keyframes fsGlow { to { opacity: 1; } }
+      @keyframes fsMark { to { opacity: 1; filter: blur(0); transform: scale(1); } }
+      @keyframes fsWord { to { opacity: 1; transform: translateY(0); } }
+      @keyframes fsRule { to { transform: scaleX(1); } }
+      @keyframes fsTag { to { opacity: 1; } }
+      @media (min-width: 768px) { #intro .tag { font-size: 12px; letter-spacing: .5em; } }
+      @media (prefers-reduced-motion: reduce) { .intro-on #intro { display: none; } .intro-on { overflow: auto; } }
+    </style>
+    <div id="intro" role="presentation" aria-hidden="true">
+      <div class="glow"></div>
+      <div class="box">
+        <div class="mark"><img src="/images/logo-fresh-straws.png" alt=""></div>
+        <div class="wordwrap"><p class="word">Công ty Cổ phần Fresh Straws Việt Nam</p></div>
+        <div class="rule"></div>
+        <p class="tag">Fresh · Dried · IQF · Export</p>
+      </div>
+      <button class="skip" type="button" data-intro-skip>Bỏ qua</button>
+    </div>
+    <script>
+      (function () {
+        var done = false;
+        function endIntro() {
+          if (done) return;
+          done = true;
+          try { sessionStorage.setItem("fs_intro", "1"); } catch (e) {}
+          var el = document.getElementById("intro");
+          if (el) el.classList.add("up");
+          setTimeout(function () {
+            document.documentElement.classList.remove("intro-on");
+            if (el && el.parentNode) el.parentNode.removeChild(el);
+          }, 900);
+        }
+        if (!document.documentElement.classList.contains("intro-on")) return;
+        setTimeout(endIntro, 2600);
+        addEventListener("wheel", endIntro, { passive: true, once: true });
+        addEventListener("touchstart", endIntro, { passive: true, once: true });
+        addEventListener("keydown", function (e) { if (e.key === "Escape") endIntro(); });
+        document.getElementById("intro").addEventListener("click", endIntro);
+      })();
+    </script>
+    <noscript><style>#intro { display: none !important; }</style></noscript>
 
     <header class="site-header">
     <div class="header-inner">
