@@ -1591,6 +1591,116 @@ select:focus {
   color: var(--muted);
 }
 
+.contact-fabs {
+  position: fixed;
+  right: 22px;
+  bottom: 46px;
+  z-index: 80;
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+}
+
+.cfab {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--fab);
+  color: var(--fab-ink, #fff);
+  box-shadow: 0 6px 18px rgba(18, 58, 44, .22);
+  transition: transform .16s ease;
+}
+
+.cfab:hover {
+  transform: scale(1.07);
+}
+
+.cfab::before,
+.cfab::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 50%;
+  background: var(--fab);
+  animation: fabRipple 2.2s ease-out infinite;
+  animation-delay: var(--fab-delay, 0s);
+}
+
+.cfab::after {
+  animation-delay: calc(var(--fab-delay, 0s) + 1.1s);
+}
+
+.cfab:hover::before,
+.cfab:hover::after {
+  animation-play-state: paused;
+  opacity: 0;
+}
+
+.cfab-ico {
+  display: grid;
+  place-items: center;
+  animation: fabBeat 2.2s ease-in-out infinite, fabWobble 2s ease-in-out infinite;
+  animation-delay: var(--fab-delay, 0s);
+}
+
+.cfab-ico svg {
+  display: block;
+  width: 27px;
+  height: 27px;
+}
+
+.cfab-zalo-text {
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.cfab-fb { --fab: #1877f2; --fab-delay: 0s; }
+.cfab-zalo { --fab: #ffffff; --fab-ink: #0068ff; --fab-delay: .35s; box-shadow: 0 6px 18px rgba(0, 104, 255, .28); }
+.cfab-tel { --fab: #1f6b4f; --fab-delay: .7s; }
+
+@media (max-width: 760px) {
+  .contact-fabs {
+    right: 16px;
+    bottom: 30px;
+    gap: 12px;
+  }
+
+  .cfab {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cfab-ico svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cfab-zalo-text {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cfab::before,
+  .cfab::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .cfab-ico {
+    animation: none;
+  }
+
+  .cfab:hover {
+    transform: none;
+  }
+}
+
 .chat-widget {
   position: fixed;
   right: 22px;
@@ -4818,26 +4928,10 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
     </div>
     <script type="application/json" id="search-data">[{"title": "Sữa chua sấy thăng hoa vị Xoài", "description": "Viên sữa chua sấy thăng hoa vị xoài, giòn tan, giàu lợi khuẩn & canxi — ăn vặt lành mạnh.", "href": "/san-pham/sua-chua-xoai", "type": "Sản phẩm"}, {"title": "Sữa chua sấy thăng hoa vị Thơm", "description": "Viên sữa chua sấy thăng hoa vị thơm, giòn tan, giàu lợi khuẩn & canxi — ăn vặt lành mạnh.", "href": "/san-pham/sua-chua-thom", "type": "Sản phẩm"}, {"title": "Sữa chua sấy thăng hoa vị Dâu", "description": "Viên sữa chua sấy thăng hoa vị dâu, giòn tan, giàu lợi khuẩn & canxi — ăn vặt lành mạnh.", "href": "/san-pham/sua-chua-dau", "type": "Sản phẩm"}, {"title": "Sữa chua sấy thăng hoa vị Mãng cầu", "description": "Viên sữa chua sấy thăng hoa vị mãng cầu, giòn tan, giàu lợi khuẩn & canxi — ăn vặt lành mạnh.", "href": "/san-pham/sua-chua-mang-cau", "type": "Sản phẩm"}, {"title": "Sữa chua sấy thăng hoa vị Chuối", "description": "Viên sữa chua sấy thăng hoa vị chuối, giòn tan, giàu lợi khuẩn & canxi — ăn vặt lành mạnh.", "href": "/san-pham/sua-chua-chuoi", "type": "Sản phẩm"}, {"title": "Purée Xoài", "description": "Purée xoài từ trái cây tươi, kết cấu mịn, vị đậm — cho pha chế, topping, làm bánh.", "href": "/san-pham/puree-xoai", "type": "Sản phẩm"}, {"title": "Purée Chanh dây", "description": "Purée chanh dây từ trái cây tươi, kết cấu mịn, vị đậm — cho pha chế, topping, làm bánh.", "href": "/san-pham/puree-chanh-day", "type": "Sản phẩm"}, {"title": "Purée Bơ", "description": "Purée bơ từ trái cây tươi, kết cấu mịn, vị đậm — cho pha chế, topping, làm bánh.", "href": "/san-pham/puree-bo", "type": "Sản phẩm"}, {"title": "Purée Thanh long", "description": "Purée thanh long từ trái cây tươi, kết cấu mịn, vị đậm — cho pha chế, topping, làm bánh.", "href": "/san-pham/puree-thanh-long", "type": "Sản phẩm"}, {"title": "Tropical Delight", "description": "Cam · Thơm · Táo · Tắc", "href": "/san-pham/tropical-delight", "type": "Sản phẩm"}, {"title": "Greenology", "description": "Cải Kale · Táo · Cần tây · Ổi · Chanh", "href": "/san-pham/greenology", "type": "Sản phẩm"}, {"title": "Red Volcano", "description": "Củ dền · Cà rốt · Táo · Ổi · Thơm · Chanh", "href": "/san-pham/red-volcano", "type": "Sản phẩm"}, {"title": "Trái cây sấy", "description": "Mãng cầu, xoài, thơm, ổi, chuối, thanh long sấy dẻo/giòn/thăng hoa.", "href": "/san-pham/trai-cay-say", "type": "Ngành hàng"}, {"title": "Trái cây đông lạnh / IQF", "description": "Chuối, thanh long, thơm cấp đông nhanh IQF cho chế biến và xuất khẩu.", "href": "/san-pham/dong-lanh-iqf", "type": "Ngành hàng"}, {"title": "Nước ép dinh dưỡng", "description": "Nước ép trái cây nguyên chất nhiều vị, sản xuất OEM, điều chỉnh độ Brix.", "href": "/san-pham/nuoc-ep", "type": "Ngành hàng"}, {"title": "Ống hút cỏ bàng khô size M", "description": "Đường kính < 4,5 mm (size M), làm từ cỏ bàng tự nhiên — phù hợp nước lọc, trà đá, cà phê.", "href": "/san-pham/ong-hut-co-bang-kho-m", "type": "Sản phẩm"}, {"title": "Ống hút cỏ bàng khô size L", "description": "Đường kính 5 - 6 mm (size L), làm từ cỏ bàng tự nhiên — phù hợp trà trái cây, soda và đồ uống phổ biến.", "href": "/san-pham/ong-hut-co-bang-kho-l", "type": "Sản phẩm"}, {"title": "Ống hút cỏ bàng khô size XL", "description": "Đường kính > 6 mm (size XL), làm từ cỏ bàng tự nhiên — phù hợp sinh tố, trà sữa và đồ uống có topping.", "href": "/san-pham/ong-hut-co-bang-kho-xl", "type": "Sản phẩm"}, {"title": "Ống hút giấy 12mm", "description": "Ống hút giấy 12mm cho đồ uống có topping, sinh tố và bubble tea.", "href": "/san-pham/ong-hut-giay-12mm", "type": "Sản phẩm"}, {"title": "Ly giấy và nắp", "description": "Ly giấy, nắp và vật tư đồ uống có thể tùy chỉnh thiết kế, phù hợp đơn hàng thương mại.", "href": "/san-pham/ly-giay", "type": "Sản phẩm"}, {"title": "Sản phẩm OEM/ODM theo yêu cầu", "description": "Phát triển quy cách, bao bì và nhãn hàng riêng cho nhà phân phối, chuỗi F&B và đối tác xuất khẩu.", "href": "/san-pham/san-pham-oem-odm", "type": "Sản phẩm"}, {"title": "Tại sao doanh nghiệp F&B nên chọn ống hút cỏ bàng?", "description": "Tóm lược lợi ích của ống hút cỏ bàng đối với trải nghiệm khách hàng, hình ảnh thương hiệu và mục tiêu giảm nhựa.", "href": "/tin-tuc/tai-sao-chon-ong-hut-co-bang", "type": "Bài viết"}, {"title": "Phân biệt trái cây sấy dẻo, sấy giòn và sấy thăng hoa", "description": "So sánh trái cây sấy dẻo, sấy giòn và sấy thăng hoa về kết cấu, hương vị, thời hạn và chi phí để chọn đúng loại cho sản phẩm F&B.", "href": "/tin-tuc/phan-biet-trai-cay-say-deo-gion-thang-hoa", "type": "Bài viết"}, {"title": "Hướng dẫn đặt hàng OEM/ODM sản phẩm xanh cho doanh nghiệp", "description": "Quy trình 6 bước đặt hàng OEM/ODM sản phẩm xanh và những hồ sơ B2B doanh nghiệp nên chuẩn bị trước để tiết kiệm thời gian.", "href": "/tin-tuc/huong-dan-dat-hang-oem-odm-san-pham-xanh", "type": "Bài viết"}, {"title": "Xu hướng tiêu dùng xanh và cơ hội xuất khẩu nông sản chế biến 2026", "description": "Tiêu dùng xanh và nông sản chế biến sâu đang mở ra cơ hội xuất khẩu cho nhà cung ứng Việt Nam — cần chuẩn bị gì để nắm bắt?", "href": "/tin-tuc/xu-huong-tieu-dung-xanh-va-co-hoi-xuat-khau-2026", "type": "Bài viết"}, {"title": "Ống hút cỏ bàng Fresh Straws Việt Nam", "description": "Nhà sản xuất ống hút cỏ bàng, ống hút tự nhiên và sản phẩm xanh Việt Nam cho HoReCa, phân phối, OEM/ODM và xuất khẩu.", "href": "/", "type": "Trang"}, {"title": "Về Fresh Straws Việt Nam", "description": "Câu chuyện, tầm nhìn, sứ mệnh và cam kết phát triển bền vững của Fresh Straws Việt Nam.", "href": "/ve-chung-toi", "type": "Trang"}, {"title": "Câu chuyện Fresh Straws Việt Nam", "description": "Hành trình phát triển ống hút cỏ bàng tự nhiên thay thế ống hút nhựa dùng một lần.", "href": "/ve-chung-toi/cau-chuyen", "type": "Trang"}, {"title": "Đối tác Fresh Straws Việt Nam", "description": "Mô hình hợp tác mua sỉ, phân phối, OEM/ODM và xuất khẩu sản phẩm xanh.", "href": "/ve-chung-toi/doi-tac", "type": "Trang"}, {"title": "Năng lực sản xuất ống hút cỏ bàng", "description": "Năng lực sản xuất, quy trình, kiểm soát chất lượng và tùy chỉnh đơn hàng B2B.", "href": "/ve-chung-toi/nang-luc-san-xuat", "type": "Trang"}, {"title": "Catalogue Fresh Straws Việt Nam", "description": "Tải catalogue ống hút cỏ bàng, sản phẩm xanh và giải pháp OEM/ODM.", "href": "/ve-chung-toi/catalogue", "type": "Trang"}, {"title": "Sản phẩm ống hút cỏ bàng và sản phẩm xanh", "description": "Danh mục ống hút cỏ bàng, ống hút giấy, ly giấy và sản phẩm OEM/ODM.", "href": "/san-pham", "type": "Trang"}, {"title": "Tin tức Fresh Straws Việt Nam", "description": "Bài viết về ống hút cỏ bàng, ống hút tự nhiên, sản phẩm xanh Việt Nam và xu hướng B2B.", "href": "/tin-tuc", "type": "Trang"}, {"title": "Sự kiện Fresh Straws Việt Nam", "description": "Layout sự kiện, hội chợ, triển lãm và hoạt động hợp tác của Fresh Straws Việt Nam.", "href": "/su-kien", "type": "Trang"}, {"title": "Liên hệ Fresh Straws Việt Nam", "description": "Yêu cầu báo giá ống hút cỏ bàng, tư vấn sản phẩm xanh, OEM/ODM hoặc đăng ký phân phối.", "href": "/lien-he", "type": "Trang"}, {"title": "Tìm kiếm Fresh Straws Việt Nam", "description": "Tìm kiếm sản phẩm, bài viết và nội dung Fresh Straws Việt Nam.", "href": "/tim-kiem", "type": "Trang"}, {"title": "Trái cây đóng lon", "description": "Mãng cầu xiêm cô đặc (Today Tây Đô), thơm/dứa đóng lon.", "href": "/san-pham/dong-lon", "type": "Ngành hàng"}, {"title": "Sữa chua trái cây sấy thăng hoa", "description": "Viên sữa chua sấy thăng hoa giàu lợi khuẩn, canxi — vị dâu, xoài, chuối.", "href": "/san-pham/sua-chua-say", "type": "Ngành hàng"}, {"title": "Chứng nhận & chất lượng", "description": "HACCP, USDA Organic, FSSC 22000, USDA Biobased, BRCGS, HALAL.", "href": "/ve-chung-toi/chung-nhan", "type": "Trang"}, {"title": "Chuối đông lạnh IQF", "description": "Chuối được sơ chế, cắt lát và cấp đông nhanh từng phần riêng lẻ bằng công nghệ IQF. Phần quả giữ độ ngọt tự nhiên và kết cấu mềm mịn, tiện lấy theo lư", "href": "/san-pham/iqf-chuoi", "type": "Sản phẩm"}, {"title": "Thanh long đông lạnh IQF", "description": "Thanh long được sơ chế, cắt miếng và cấp đông nhanh từng phần riêng lẻ bằng công nghệ IQF. Sản phẩm giữ màu trắng tự nhiên cùng hạt đen đặc trưng, phù", "href": "/san-pham/iqf-thanh-long", "type": "Sản phẩm"}, {"title": "Thơm đông lạnh IQF", "description": "Thơm (dứa) được sơ chế, cắt miếng và cấp đông nhanh từng phần riêng lẻ bằng công nghệ IQF. Sản phẩm giữ vị chua ngọt tự nhiên, tiện dùng theo từng khẩ", "href": "/san-pham/iqf-thom", "type": "Sản phẩm"}, {"title": "Xoài đông lạnh IQF", "description": "Xoài được sơ chế và cấp đông nhanh từng phần riêng lẻ bằng công nghệ IQF. Phần quả có màu vàng tự nhiên, vị ngọt đặc trưng, tiện dùng theo từng khẩu p", "href": "/san-pham/iqf-xoai", "type": "Sản phẩm"}, {"title": "Ổi đông lạnh IQF", "description": "Ổi được sơ chế và cấp đông nhanh từng phần riêng lẻ bằng công nghệ IQF. Sản phẩm mang hương vị ổi đặc trưng, thuận tiện lấy theo lượng cần dùng để pha", "href": "/san-pham/iqf-oi", "type": "Sản phẩm"}]</script>
   </div>
-    <div class="chat-widget" data-chat>
-    <button class="chat-toggle" type="button" data-chat-toggle aria-label="Mở hộp thoại tư vấn">
-      <svg class="chat-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.5 9.5 0 0 1-2.8-.4L3 21l1.6-4.6A8.2 8.2 0 0 1 3.6 11.5 8.4 8.4 0 0 1 12 3.1a8.4 8.4 0 0 1 9 8.4z"></path></svg>
-      <span class="chat-sr">Chat box</span>
-    </button>
-    <div class="chat-panel" data-chat-panel aria-hidden="true">
-      <div class="chat-head">
-        <strong>Fresh Straws Sales</strong>
-        <button type="button" data-chat-toggle aria-label="Đóng chat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
-      </div>
-      <div class="chat-body">
-        <p>Xin chào! Chọn kênh bên dưới để trao đổi trực tiếp với đội sales Fresh Straws.</p>
-      </div>
-      <div class="chat-channels">
-        <span class="chat-channels-label">Kết nối trực tiếp</span>
-        <a class="chat-channel" href="tel:0708735327"><span class="ch-ico" style="background:#1f6b4f"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span><span>Hotline <strong>0708 735 327</strong></span></a>
-        <a class="chat-channel" href="https://zaloapp.com/qr/p/118ql55yb9oxi" target="_blank" rel="noopener"><span class="ch-ico" style="background:#0068ff"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.5 3 2 6.66 2 11.06c0 2.5 1.43 4.73 3.66 6.19-.13.86-.5 1.98-1.06 2.9-.18.29.06.66.4.58 1.5-.35 3.02-.94 3.86-1.35 1.02.28 2.1.44 3.14.44 5.5 0 10-3.66 10-8.06S17.5 3 12 3z"></path></svg></span><span>Chat Zalo OA Fresh Straws</span></a>
-        <a class="chat-channel" href="https://www.facebook.com/freshstrawsvietnam" target="_blank" rel="noopener"><span class="ch-ico" style="background:#1877f2"><svg viewBox="0 0 24 24" fill="#fff"><path d="M14.2 9V6.9c0-.9.2-1.4 1.6-1.4H17V2.3c-.4-.05-1.4-.15-2.5-.15-2.6 0-4.3 1.55-4.3 4.4V9H8v3h2.2v9h3.6v-9H16l.5-3z"></path></svg></span><span>Fanpage Facebook</span></a>
-      </div>
-    </div>
+    <div class="contact-fabs" aria-label="Kênh liên hệ nhanh">
+    <a class="cfab cfab-fb" href="https://www.facebook.com/freshstrawsvietnam" target="_blank" rel="noopener" aria-label="Nhắn tin qua Fanpage Facebook"><span class="cfab-ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M14.2 9V6.9c0-.9.2-1.4 1.6-1.4H17V2.3c-.4-.05-1.4-.15-2.5-.15-2.6 0-4.3 1.55-4.3 4.4V9H8v3h2.2v9h3.6v-9H16l.5-3z"></path></svg></span></a>
+    <a class="cfab cfab-zalo" href="https://zaloapp.com/qr/p/118ql55yb9oxi" target="_blank" rel="noopener" aria-label="Chat Zalo OA Fresh Straws"><span class="cfab-ico cfab-zalo-text">Zalo</span></a>
+    <a class="cfab cfab-tel" href="tel:0708735327" aria-label="Gọi hotline 0708 735 327"><span class="cfab-ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span></a>
   </div>
     <script>const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
