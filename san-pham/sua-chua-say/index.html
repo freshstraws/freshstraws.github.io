@@ -1756,6 +1756,9 @@ select:focus {
   grid-template-columns: 1fr auto;
   gap: 8px;
 }
+.chat-form .chat-contact { grid-column: 1 / -1; }
+.chat-form small { grid-column: 1 / -1; margin-top: 2px; color: var(--muted); font-size: 12.5px; line-height: 1.45; }
+.chat-form input:invalid { border-color: var(--line); }
 
 .chat-form button {
   border: 0;
@@ -4835,7 +4838,8 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
         <button type="button" data-chat-choice="Liên hệ sales">Liên hệ sales</button>
       </div>
       <form class="chat-form" data-form>
-        <input type="text" placeholder="Nhập tin nhắn..." aria-label="Tin nhắn chat">
+        <input class="chat-contact" type="text" name="contact" placeholder="Số điện thoại hoặc email của bạn" aria-label="Số điện thoại hoặc email" required>
+        <input type="text" name="message" placeholder="Nhập tin nhắn..." aria-label="Tin nhắn chat">
         <button type="submit">Gửi</button>
         <small data-form-feedback></small>
       </form>
@@ -4977,7 +4981,7 @@ function initForms() {
       if (feedback) feedback.textContent = "Đang gửi...";
       fetch(SHEET_ENDPOINT, { method: "POST", mode: "no-cors", body: JSON.stringify(payload) })
         .then(() => {
-          if (feedback) feedback.textContent = "Đã gửi thành công! Fresh Straws sẽ liên hệ lại với bạn sớm nhất.";
+          if (feedback) feedback.textContent = isChat ? "Đã gửi! Fresh Straws sẽ liên hệ lại qua thông tin bạn để lại. Cần gấp, hãy gọi 0708 735 327 hoặc chat Zalo bên dưới." : "Đã gửi thành công! Fresh Straws sẽ liên hệ lại với bạn sớm nhất.";
           form.reset();
         })
         .catch(() => {
@@ -5002,9 +5006,10 @@ function initChat() {
 
   $$("[data-chat-choice]").forEach((button) => {
     button.addEventListener("click", () => {
-      const input = $(".chat-form input");
+      const input = $('.chat-form [name="message"]');
       if (input) input.value = button.dataset.chatChoice || "";
-      input?.focus();
+      const contact = $('.chat-form [name="contact"]');
+      (contact && !contact.value ? contact : input)?.focus();
     });
   });
 }
