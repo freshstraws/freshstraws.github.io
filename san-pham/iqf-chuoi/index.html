@@ -1625,7 +1625,7 @@ select:focus {
   inset: 0;
   z-index: -1;
   border-radius: 50%;
-  background: var(--fab);
+  background: var(--fab-ripple, var(--fab));
   animation: fabRipple 2.2s ease-out infinite;
   animation-delay: var(--fab-delay, 0s);
 }
@@ -1660,7 +1660,7 @@ select:focus {
 }
 
 .cfab-fb { --fab: #1877f2; --fab-delay: 0s; }
-.cfab-zalo { --fab: #ffffff; --fab-ink: #0068ff; --fab-delay: .35s; box-shadow: 0 6px 18px rgba(0, 104, 255, .28); }
+.cfab-zalo { --fab: #ffffff; --fab-ink: #0068ff; --fab-ripple: #9aa6b2; --fab-delay: .35s; box-shadow: 0 6px 18px rgba(0, 104, 255, .28); }
 .cfab-tel { --fab: #1f6b4f; --fab-delay: .7s; }
 
 @media (max-width: 760px) {
