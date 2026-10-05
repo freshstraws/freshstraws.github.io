@@ -1796,9 +1796,12 @@ select:focus {
 }
 
 .footer-links-2col {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  columns: 2;
   column-gap: 24px;
+}
+
+.footer-links-2col a {
+  break-inside: avoid;
 }
 
 .footer-bottom {
@@ -1941,7 +1944,7 @@ select:focus {
   }
 
   .footer-links-2col {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    columns: 2;
   }
 
   .product-grid,
@@ -2012,7 +2015,7 @@ select:focus {
   .form-grid,
   .footer-grid,
   .footer-links-2col {
-    grid-template-columns: 1fr;
+    columns: 1;
   }
 
   .spec-list div {
