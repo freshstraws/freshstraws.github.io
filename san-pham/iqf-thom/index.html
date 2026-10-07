@@ -2235,10 +2235,6 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
 .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s ease; }
 .hero-slide.is-active { opacity: 1; }
 .hero-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
-/* Banner cũ 16:9 (chưa có bản 2400×880): hiện trọn ảnh ở giữa, 2 bên là ảnh làm mờ */
-.hero-slide--legacy { background: var(--bg) center / cover no-repeat; }
-.hero-slide--legacy::before { content: ""; position: absolute; inset: 0; backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px); background: rgba(255, 255, 255, 0.18); }
-.hero-slide--legacy img { position: relative; object-fit: contain; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; width: var(--container); margin: 20px auto 0; }
 .hero-cta .btn-ghost { color: var(--green-950); background: transparent; border-color: var(--line); }
 .product-detail-hero .btn-ghost { color: var(--green-950); background: var(--white); border-color: var(--line); }
@@ -2490,10 +2486,10 @@ html[data-route="/lien-he"] .footer-cta { display: none; }
 <div class="spa-page" id="page-home" data-path="/"><section class="hero hero-home">
     <div class="hero-banner" data-hero-slideshow>
       <div class="hero-slide is-active"><picture><source type="image/webp" srcset="/images/banners/hero-ong-hut-co-bang-m.webp 1035w, /images/banners/hero-ong-hut-co-bang.webp 2070w" sizes="100vw"><img src="/images/banners/hero-ong-hut-co-bang.jpg" alt="Ống hút cỏ bàng Fresh Straws — tự nhiên, an toàn, bền vững" width="2070" height="760" fetchpriority="high"></picture></div>
-      <div class="hero-slide hero-slide--legacy" style="--bg:url(/images/banner-2.jpg)"><img src="/images/banner-2.jpg" alt="Nước ép trái cây dinh dưỡng Fresh Straws" width="1400" height="788" loading="lazy"></div>
-      <div class="hero-slide hero-slide--legacy" style="--bg:url(/images/banner-3.jpg)"><img src="/images/banner-3.jpg" alt="Trái cây sấy Fresh Straws — hoàn toàn từ tự nhiên" width="1400" height="788" loading="lazy"></div>
+      <div class="hero-slide"><picture><source type="image/webp" srcset="/images/banners/hero-nuoc-ep-m.webp 1035w, /images/banners/hero-nuoc-ep.webp 2070w" sizes="100vw"><img src="/images/banners/hero-nuoc-ep.jpg" alt="Nước ép trái cây dinh dưỡng Fresh Straws" width="2070" height="760" loading="lazy"></picture></div>
+      <div class="hero-slide"><picture><source type="image/webp" srcset="/images/banners/hero-trai-cay-say-m.webp 1035w, /images/banners/hero-trai-cay-say.webp 2070w" sizes="100vw"><img src="/images/banners/hero-trai-cay-say.jpg" alt="Trái cây sấy Fresh Straws — hoàn toàn từ tự nhiên" width="2070" height="760" loading="lazy"></picture></div>
       <div class="hero-slide"><picture><source type="image/webp" srcset="/images/banners/hero-puree-m.webp 1035w, /images/banners/hero-puree.webp 2070w" sizes="100vw"><img src="/images/banners/hero-puree.jpg" alt="Trái cây nghiền nhuyễn Puree Fresh Straws — giàu dinh dưỡng" width="2070" height="760" loading="lazy"></picture></div>
-      <div class="hero-slide hero-slide--legacy" style="--bg:url(/images/banner-5.jpg)"><img src="/images/banner-5.jpg" alt="Sữa chua trái cây sấy thăng hoa Fresh Straws — giàu lợi khuẩn" width="1400" height="788" loading="lazy"></div>
+      <div class="hero-slide"><picture><source type="image/webp" srcset="/images/banners/hero-sua-chua-say-m.webp 1035w, /images/banners/hero-sua-chua-say.webp 2070w" sizes="100vw"><img src="/images/banners/hero-sua-chua-say.jpg" alt="Sữa chua trái cây sấy thăng hoa Fresh Straws — giàu lợi khuẩn" width="2070" height="760" loading="lazy"></picture></div>
     </div>
     <div class="hero-cta">
       <a class="btn btn-primary" href="/lien-he/">Nhận báo giá <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
